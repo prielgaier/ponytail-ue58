@@ -1,7 +1,7 @@
 {
   "name": "ponytail-ue58",
   "interface": {
-    "displayName": "Ponytail UE5.8"
+    "displayName": "Ponytail UE5.3"
   },
   "plugins": [
     {
@@ -9,7 +9,7 @@
       "source": {
         "source": "url",
         "url": "https://github.com/prielgaier/ponytail-ue58.git",
-        "ref": "main"
+        "ref": "ue5.3"
       },
       "policy": {
         "installation": "AVAILABLE",

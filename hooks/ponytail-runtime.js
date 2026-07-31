@@ -41,7 +41,7 @@ function writeHookOutput(event, mode, context = '') {
     return;
   }
   if (isCodex) {
-    const output = { systemMessage: `PONYTAIL UE5.8:${mode.toUpperCase()}` };
+    const output = { systemMessage: `PONYTAIL UE5.3:${mode.toUpperCase()}` };
     if (context) {
       output.hookSpecificOutput = {
         hookEventName: event,

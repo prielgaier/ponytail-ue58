@@ -1,7 +1,7 @@
 {
   "name": "ponytail-ue58",
   "version": "1.0.0",
-  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit UObject, replication, cooking, serialization, and asset safety boundaries.",
+  "description": "Minimal, engine-native Unreal Engine 5.3 development with explicit UObject, replication, cooking, serialization, and asset safety boundaries.",
   "author": {
     "name": "prielgaier",
     "url": "https://github.com/prielgaier"

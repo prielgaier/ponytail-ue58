@@ -32,7 +32,7 @@ const GEMINI_AUTO_HOOKS = 'hooks/hooks.json';
 // Same load-bearing phrases asserted by scripts/check-rule-copies.js: the file
 // contextFileName points at must actually carry the rules, not just exist.
 const RULE_INVARIANTS = [
-  'Unreal Engine 5.8',
+  'Unreal Engine 5.3',
   'Text grep alone cannot prove',
   'server authority or replication correctness',
 ];

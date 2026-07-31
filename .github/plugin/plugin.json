@@ -1,6 +1,6 @@
 {
   "name": "ponytail-ue58",
-  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit safety boundaries.",
+  "description": "Minimal, engine-native Unreal Engine 5.3 development with explicit safety boundaries.",
   "version": "1.0.0",
   "author": {
     "name": "prielgaier",
@@ -9,7 +9,7 @@
   "homepage": "https://github.com/prielgaier/ponytail-ue58",
   "repository": "https://github.com/prielgaier/ponytail-ue58",
   "license": "MIT",
-  "keywords": ["unreal-engine", "ue5", "ue5.8", "yagni", "code-review"],
+  "keywords": ["unreal-engine", "ue5", "ue5.3", "yagni", "code-review"],
   "commands": "commands/",
   "skills": "skills/",
   "hooks": "hooks/copilot-hooks.json"

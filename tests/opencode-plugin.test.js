@@ -40,7 +40,7 @@ test('system.transform injects the ruleset at the default mode (full)', async ()
   const hooks = await loadPlugin({});
   const system = await transform(hooks);
   assert.equal(system.length, 1);
-  assert.match(system[0], /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+  assert.match(system[0], /PONYTAIL UE5\.3 MODE ACTIVE — level: full/);
   assert.match(system[0], /lazy Unreal senior/);
 });
 
@@ -49,7 +49,7 @@ test('command.execute.before persists /ponytail ultra, transform follows it', as
   await hooks['command.execute.before']({ command: 'ponytail', arguments: 'ultra', sessionID: 's' });
   assert.equal(fs.readFileSync(statePath, 'utf8'), 'ultra');
   const system = await transform(hooks);
-  assert.match(system[0], /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/);
+  assert.match(system[0], /PONYTAIL UE5\.3 MODE ACTIVE — level: ultra/);
 });
 
 test('/ponytail off persists off and transform injects nothing', async () => {
@@ -67,7 +67,7 @@ test('system.transform merges into existing system entry (Qwen compat, #296)', a
   await hooks['experimental.chat.system.transform']({ model: {} }, output);
   assert.equal(output.system.length, 1, 'must not add a second system entry');
   assert.match(output.system[0], /You are a helpful assistant/);
-  assert.match(output.system[0], /PONYTAIL UE5\.8 MODE ACTIVE/);
+  assert.match(output.system[0], /PONYTAIL UE5\.3 MODE ACTIVE/);
 });
 
 test('unsupported /ponytail arguments do not reset the current mode', async () => {

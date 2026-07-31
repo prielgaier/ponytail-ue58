@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "ponytail-ue58",
-  "description": "Ponytail minimal-engineering mode, converted specifically for Unreal Engine 5.8.",
+  "description": "Ponytail minimal-engineering mode, converted specifically for Unreal Engine 5.3.",
   "owner": {
     "name": "prielgaier",
     "url": "https://github.com/prielgaier"
@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "ponytail-ue58",
-      "description": "Prefer existing project and UE5.8 systems while preserving engine safety boundaries.",
+      "description": "Prefer existing project and UE5.3 systems while preserving engine safety boundaries.",
       "source": "./",
       "category": "productivity"
     }
