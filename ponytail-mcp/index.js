@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Ponytail UE5.8 MCP server: serves the Unreal-specific ruleset over stdio as a
+// Ponytail UE5.7 MCP server: serves the Unreal-specific ruleset over stdio as a
 // prompt (user-invoked) and a tool (for hosts that pull context via tools).
 // It does NOT replace the always-on adapters; it's the clean option for hosts
 // whose only injection point is the prompt menu (see #70).
@@ -23,8 +23,8 @@ const modeArg = z
 server.registerPrompt(
   "ponytail",
   {
-    title: "Ponytail UE5.8 mode",
-    description: "UE5.8 instructions: inspect ownership, prefer native engine facilities, and make the smallest safe change.",
+    title: "Ponytail UE5.7 mode",
+    description: "UE5.7 instructions: inspect ownership, prefer native engine facilities, and make the smallest safe change.",
     argsSchema: { mode: modeArg },
   },
   ({ mode }) => ({
@@ -35,8 +35,8 @@ server.registerPrompt(
 server.registerTool(
   "ponytail_instructions",
   {
-    title: "Ponytail UE5.8 instructions",
-    description: "Return the Ponytail UE5.8 ruleset for the given intensity (lite, full, or ultra).",
+    title: "Ponytail UE5.7 instructions",
+    description: "Return the Ponytail UE5.7 ruleset for the given intensity (lite, full, or ultra).",
     inputSchema: { mode: modeArg },
     outputSchema: { mode: z.string(), instructions: z.string() },
     annotations: { readOnlyHint: true, openWorldHint: false },

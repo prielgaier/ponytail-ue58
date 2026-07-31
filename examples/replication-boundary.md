@@ -7,7 +7,7 @@
 Updating health independently on every client is shorter source code but breaks
 authority, cheating resistance, late join, and reconciliation.
 
-## Ponytail UE5.8
+## Ponytail UE5.7
 
 Keep mutation authoritative, replicate the state, and use RepNotify only when a
 client-side reaction is needed. Register the property for replication and

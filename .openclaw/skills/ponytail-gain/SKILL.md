@@ -1,11 +1,11 @@
 ---
 name: ponytail-gain
-description: "Summarize measurable simplification in the current UE5.8 diff without inventing runtime, cook, package, or cost claims."
+description: "Summarize measurable simplification in the current UE5.7 diff without inventing runtime, cook, package, or cost claims."
 homepage: https://github.com/prielgaier/ponytail-ue58
 license: MIT
 ---
 
-# Ponytail UE5.8 gain
+# Ponytail UE5.7 gain
 
 Measure the current repository diff. Do not reuse the upstream Ponytail web
 benchmark numbers: they were not measured on Unreal Engine and are not evidence
@@ -23,7 +23,7 @@ for this fork.
 ## Scoreboard
 
 ```text
-Ponytail UE5.8 gain — current diff only
+Ponytail UE5.7 gain — current diff only
 source       +A / -D lines, net N across F files
 reflection   +R / -R members
 tick         +T / -T sites

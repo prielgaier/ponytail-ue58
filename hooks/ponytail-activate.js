@@ -70,7 +70,7 @@ if (!isCodex && !isCopilot) try {
         '"statusLine": { "type": "command", "command": ' + JSON.stringify(command) + ' }';
       output += "\n\n" +
         "STATUSLINE SETUP NEEDED: The ponytail plugin includes a statusline badge showing active mode " +
-        "(e.g. [PONYTAIL UE5.8], [PONYTAIL UE5.8:ULTRA]). It is not configured yet. " +
+        "(e.g. [PONYTAIL UE5.7], [PONYTAIL UE5.7:ULTRA]). It is not configured yet. " +
         "To enable, add this to " + settingsPath + ": " +
         statusLineSnippet + " " +
         "Proactively offer to set this up for the user on first interaction.";

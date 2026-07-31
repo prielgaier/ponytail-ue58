@@ -17,12 +17,12 @@ const ROOT = path.join(__dirname, '..');
 const HOMEPAGE = 'https://github.com/prielgaier/ponytail-ue58';
 
 const DESCRIPTIONS = {
-  'ponytail': 'UE5.8 implementation mode: inspect project ownership, prefer native engine facilities, and make the smallest reflection-safe change.',
-  'ponytail-review': 'Review a UE5.8 diff for needless Tick, abstractions, modules, dependencies, reflection, and unsafe asset assumptions.',
-  'ponytail-audit': 'Audit a UE5.8 repository for unnecessary systems, Tick usage, reflection, dependencies, and asset-loading complexity.',
-  'ponytail-debt': 'Collect UE5.8 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries.',
-  'ponytail-gain': 'Summarize measurable simplification in the current UE5.8 diff without inventing runtime, cook, package, or cost claims.',
-  'ponytail-help': 'Quick reference for Ponytail UE5.8 modes, skills, safety boundaries, and commands.',
+  'ponytail': 'UE5.7 implementation mode: inspect project ownership, prefer native engine facilities, and make the smallest reflection-safe change.',
+  'ponytail-review': 'Review a UE5.7 diff for needless Tick, abstractions, modules, dependencies, reflection, and unsafe asset assumptions.',
+  'ponytail-audit': 'Audit a UE5.7 repository for unnecessary systems, Tick usage, reflection, dependencies, and asset-loading complexity.',
+  'ponytail-debt': 'Collect UE5.7 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries.',
+  'ponytail-gain': 'Summarize measurable simplification in the current UE5.7 diff without inventing runtime, cook, package, or cost claims.',
+  'ponytail-help': 'Quick reference for Ponytail UE5.7 modes, skills, safety boundaries, and commands.',
 };
 
 const NAMES = Object.keys(DESCRIPTIONS);
