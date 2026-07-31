@@ -1,7 +1,4 @@
-# Reproduces Pyseph's issue-65 setup: baseline vs ponytail, gpt-4.1-mini + gpt-5.4-mini.
-# Reuses the repo's arms + loc/correctness gates. Needs OPENAI_API_KEY in ../.env.
-#   npx promptfoo@latest eval -c benchmarks/promptfooconfig.gpt.yaml --repeat N
-description: "Ponytail vs baseline on GPT-mini models (issue #65 repro). LOC + correctness gate."
+description: "Ponytail UE5.8 vs baseline on OpenAI models: structural correctness and code LOC."
 
 providers:
   - id: openai:gpt-4.1-mini
@@ -13,7 +10,7 @@ prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
   - id: file://arms/ponytail.js
-    label: ponytail
+    label: ponytail UE5.8
 
 defaultTest:
   assert:
@@ -25,8 +22,8 @@ defaultTest:
       metric: correct
 
 tests:
-  - vars: { task: "Write me a Python function that validates email addresses." }
-  - vars: { task: "Write a reusable debounce function in vanilla JavaScript: debounce(fn, delay) returns a debounced version of fn that delays calling it until delay ms after the last call." }
-  - vars: { task: "Write Python code that reads sales.csv and sums the 'amount' column." }
-  - vars: { task: "Build me a countdown timer component in React that counts down from a given number of seconds." }
-  - vars: { task: "Add rate limiting to my FastAPI endpoint so users can't spam it." }
+  - vars: { task: "In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." }
+  - vars: { task: "Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state." }
+  - vars: { task: "In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely." }
+  - vars: { task: "A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change." }
+  - vars: { task: "Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path." }

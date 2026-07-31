@@ -1,10 +1,10 @@
 {
-  "name": "ponytail",
-  "version": "4.8.4",
-  "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+  "name": "ponytail-ue58",
+  "version": "1.0.0",
+  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit UObject, replication, cooking, serialization, and asset safety boundaries.",
   "author": {
-    "name": "Dietrich Gebert",
-    "url": "https://github.com/DietrichGebert"
+    "name": "prielgaier",
+    "url": "https://github.com/prielgaier"
   },
   "hooks": "./hooks/claude-codex-hooks.json"
 }

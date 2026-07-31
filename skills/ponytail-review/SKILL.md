@@ -1,57 +1,50 @@
 ---
 name: ponytail-review
 description: >
-  Code review focused exclusively on over-engineering. Finds what to delete:
-  reinvented standard library, unneeded dependencies, speculative abstractions,
-  dead flexibility. One line per finding: location, what to cut, what replaces
-  it. Use when the user says "review for over-engineering", "what can we
-  delete", "is this over-engineered", "simplify review", or invokes
-  /ponytail-review. Complements correctness-focused review, this one only
-  hunts complexity.
+  Review an Unreal Engine 5.8 diff exclusively for unnecessary architecture,
+  Tick/polling, reflection surface, modules/plugins, wrappers, components,
+  duplicate engine functionality, and unsafe deletion assumptions. Use for UE5.8
+  over-engineering reviews, simplify reviews, delete lists, or
+  /ponytail-review. Report only; do not apply fixes.
 ---
 
-Review diffs for unnecessary complexity. One line per finding: location, what
-to cut, what replaces it. The diff's best outcome is getting shorter.
+# Ponytail UE5.8 review
 
-## Format
+Review the current UE5.8 diff for removable complexity after reading the
+`.uproject`, affected `Build.cs`/targets, nearby project pattern, and referenced
+assets or Blueprints. The best safe result is a shorter diff with fewer Unreal
+systems to own.
 
-`L<line>: <tag> <what>. <replacement>.`, or `<file>:L<line>: ...` for
-multi-file diffs.
+## Findings
+
+Use one line per finding:
+
+`<file>:L<line>: <tag> <what to cut>. <UE/project-native replacement>.`
 
 Tags:
 
-- `delete:` dead code, unused flexibility, speculative feature. Replacement: nothing.
-- `stdlib:` hand-rolled thing the standard library ships. Name the function.
-- `native:` dependency or code doing what the platform already does. Name the feature.
-- `yagni:` abstraction with one implementation, config nobody sets, layer with one caller.
-- `shrink:` same logic, fewer lines. Show the shorter form.
+- `delete:` dead or speculative source with verified reachability evidence.
+- `native:` custom code duplicating a UE5.8 facility already available.
+- `tick:` polling that can be an event, delegate, timer, notify, or existing callback.
+- `layer:` one-consumer manager, Subsystem, Component, interface, base class, module, or plugin.
+- `reflect:` reflected API/metadata not consumed by GC, serialization, replication, editor, or Blueprint.
+- `dependency:` avoidable module/plugin dependency.
+- `shrink:` same safe behavior with fewer files, assets, or lines.
 
-## Examples
+## Evidence rules
 
-❌ "This EmailValidator class might be more complex than necessary, have you
-considered whether all these validation rules are needed at this stage?"
+- Do not call an asset dead from grep alone. Require Asset Registry/Reference Viewer or equivalent evidence and account for maps, config, tags, reflection, soft paths, Primary Assets, and dynamic loads.
+- Do not flag generated headers, required reflection metadata, module declarations, replication registration, redirects, migrations, or editor metadata as boilerplate when UE consumes them.
+- Do not trade away UObject lifetime, authority/replication, threading, serialization, cook reachability, crash/data-loss handling, or an explicit requirement.
+- Do not recommend switching Blueprint/C++ ownership merely from preference; follow the project boundary.
 
-✅ `L12-38: stdlib: 27-line validator class. "@" in email, 1 line, real validation is the confirmation mail.`
+## Output
 
-✅ `L4: native: moment.js imported for one format call. Intl.DateTimeFormat, 0 deps.`
+Rank high-confidence cuts first. End with:
 
-✅ `repo.py:L88: yagni: AbstractRepository with one implementation. Inline it until a second one exists.`
+`net: -<N> source lines, -<M> reflected members, -<P> module/plugin dependencies possible; asset deletions: <verified count>.`
 
-✅ `L52-71: delete: retry wrapper around an idempotent local call. Nothing replaces it.`
+If nothing is safely removable: `Lean for UE5.8 already. Ship.`
 
-✅ `L30-44: shrink: manual loop builds dict. dict(zip(keys, values)), 1 line.`
-
-## Scoring
-
-End with the only metric that matters: `net: -<N> lines possible.`
-
-If there is nothing to cut, say `Lean already. Ship.` and stop.
-
-## Boundaries
-
-Scope: over-engineering and complexity only. Correctness bugs, security holes,
-and performance are explicitly out of scope. Route them to a normal review
-pass, not this one. A single smoke test or `assert`-based
-self-check is the ponytail minimum, not bloat, never flag it for deletion.
-Does not apply the fixes, only lists them.
-"stop ponytail-review" or "normal mode": revert to verbose review style.
+Scope is over-engineering only. Route correctness, security, and performance
+bugs to a normal review. Do not apply fixes.

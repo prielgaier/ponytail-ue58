@@ -1,29 +1,28 @@
 {
-  "name": "ponytail",
-  "version": "4.8.4",
-  "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+  "name": "ponytail-ue58",
+  "version": "1.0.0",
+  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit safety boundaries.",
   "author": {
-    "name": "Dietrich Gebert",
-    "url": "https://github.com/DietrichGebert"
+    "name": "prielgaier",
+    "url": "https://github.com/prielgaier"
   },
-  "homepage": "https://github.com/DietrichGebert/ponytail",
-  "repository": "https://github.com/DietrichGebert/ponytail",
+  "homepage": "https://github.com/prielgaier/ponytail-ue58",
+  "repository": "https://github.com/prielgaier/ponytail-ue58",
   "license": "MIT",
-  "keywords": ["yagni", "minimalism", "code-review", "productivity"],
+  "keywords": ["unreal-engine", "ue5", "ue5.8", "yagni", "code-review"],
   "skills": "./skills/",
-  "hooks": "./hooks/claude-codex-hooks.json",
   "interface": {
-    "displayName": "Ponytail",
-    "shortDescription": "Lazy senior developer mode",
-    "longDescription": "Prefer YAGNI, the standard library, native platform features, and the smallest correct implementation.",
-    "developerName": "Dietrich Gebert",
+    "displayName": "Ponytail UE5.8",
+    "shortDescription": "Minimal engine-native UE5.8 development",
+    "longDescription": "Reuse project and UE5.8 systems, minimize architecture and Tick, and preserve UObject, replication, cooking, serialization, and asset safety.",
+    "developerName": "prielgaier",
     "category": "Productivity",
-    "capabilities": ["Instructions", "Lifecycle hooks"],
-    "websiteURL": "https://github.com/DietrichGebert/ponytail",
+    "capabilities": ["Instructions", "UE5.8 review"],
+    "websiteURL": "https://github.com/prielgaier/ponytail-ue58",
     "defaultPrompt": [
-      "Use Ponytail mode for this task.",
-      "Review this diff for over-engineering.",
-      "Find the smallest correct implementation."
+      "Use Ponytail UE5.8 mode for this task.",
+      "Review this Unreal diff for over-engineering.",
+      "Find the smallest correct UE5.8 implementation."
     ],
     "brandColor": "#111111",
     "composerIcon": "./assets/logo.png",

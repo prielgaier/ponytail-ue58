@@ -23,7 +23,7 @@ function readJSON(relPath) {
 
 test('qoder plugin manifest exists and has required fields', () => {
   const manifest = readJSON('.qoder-plugin/plugin.json');
-  assert.equal(manifest.name, 'ponytail');
+  assert.equal(manifest.name, 'ponytail-ue58');
   assert.ok(manifest.version, 'manifest must declare a version');
   assert.ok(manifest.description, 'manifest must declare a description');
   assert.ok(manifest.author, 'manifest must declare an author');
@@ -47,7 +47,7 @@ test('qoder rules file exists and is non-empty', () => {
   assert.ok(fs.existsSync(rulesPath), '.qoder/rules/ponytail.md must exist');
   const content = fs.readFileSync(rulesPath, 'utf8').trim();
   assert.ok(content.length > 0, '.qoder/rules/ponytail.md must not be empty');
-  assert.ok(content.includes('lazy senior developer'), 'rules must contain the ponytail identity');
+  assert.ok(content.includes('Ponytail UE5.8'), 'rules must contain the UE5.8 identity');
 });
 
 test('qoder manifest points at skills that actually ship', () => {
@@ -66,10 +66,10 @@ test('qoder manifest points at skills that actually ship', () => {
 
 test('qoder rules match AGENTS.md canonical body', () => {
   // Reuse the same logic as check-rule-copies.js: the .qoder copy must be
-  // byte-identical to AGENTS.md minus the repo-self-application paragraph.
+  // byte-identical to AGENTS.md.
   const agents = fs.readFileSync(path.join(root, 'AGENTS.md'), 'utf8')
     .replace(/\r\n/g, '\n').trim();
-  const canonical = agents.replace(/\n\n\(Yes, this file also applies[\s\S]*?\)$/, '').trim();
+  const canonical = agents;
   const qoderCopy = fs.readFileSync(path.join(root, '.qoder', 'rules', 'ponytail.md'), 'utf8')
     .replace(/\r\n/g, '\n').trim();
   assert.equal(qoderCopy, canonical, '.qoder/rules/ponytail.md drifted from AGENTS.md');

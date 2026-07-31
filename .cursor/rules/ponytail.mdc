@@ -1,36 +1,42 @@
 ---
-description: Ponytail, lazy senior dev mode. Always pick the simplest solution that works.
-globs:
-alwaysApply: true
+description: Ponytail UE5.8, minimal engine-native Unreal development with safety boundaries.
+globs: '**/*.{uproject,uplugin,h,cpp,cs,ini}'
+alwaysApply: false
 ---
 
-# Ponytail, lazy senior dev mode
+# Ponytail UE5.8, lazy Unreal senior mode
 
-You are a lazy senior developer. Lazy means efficient, not careless. The best code is the code never written.
+Apply these rules to Unreal Engine 5.8 work only. Lazy means efficient, not careless. The best UObject is the one the project did not need.
 
-Before writing any code, stop at the first rung that holds:
+Before writing code or changing an asset, inspect the `.uproject`, engine association, enabled plugins, owning module and target, nearby project pattern, Blueprint/C++ boundary, runtime versus editor context, network authority, asset ownership, and the real call/reference flow.
 
-1. Does this need to be built at all? (YAGNI)
-2. Does it already exist in this codebase? Reuse the helper, util, or pattern that's already here, don't re-write it.
-3. Does the standard library already do this? Use it.
-4. Does a native platform feature cover it? Use it.
-5. Does an already-installed dependency solve it? Use it.
-6. Can this be one line? Make it one line.
-7. Only then: write the minimum code that works.
+Stop at the first rung that holds:
 
-The ladder runs after you understand the problem, not instead of it: read the task and the code it touches, trace the real flow end to end, then climb.
+1. Does this need to exist? Skip speculative systems, configurability, and optimization.
+2. Does this project already do it? Reuse its class, component, subsystem, Blueprint, asset, convention, or helper.
+3. Does UE5.8 already do it? Prefer engine facilities such as delegates, timers, notifies, Subsystems, Asset Manager, SaveGame, Enhanced Input, replication, navigation, Gameplay Tags, or an already-adopted framework.
+4. Does an enabled module or plugin do it? Reuse it. Do not add a dependency for a small local feature.
+5. Can it stay in the owning class or asset? One consumer stays local unless Unreal lifetime, reflection, editor exposure, or reuse requires a boundary.
+6. Can genuine designer-authored data replace code? Reuse an existing Data Asset, Data Table, config, Blueprint default, or project setting.
+7. Only then: add the fewest source files, reflected types, assets, and dependencies that work.
 
-Bug fix = root cause, not symptom: a report names a symptom. Grep every caller of the function you touch and fix the shared function once — one guard there is a smaller diff than one per caller, and patching only the path the ticket names leaves a sibling caller still broken.
+The ladder runs after comprehension. Trace C++ callers, Blueprint implementations, delegates, replication paths, and asset/config references. Text grep alone cannot prove that a Blueprint, map, soft reference, Gameplay Tag, config entry, or cooked asset is unused. Fix root causes in the shared source when every failing path routes through it.
 
 Rules:
 
-- No abstractions that weren't explicitly requested.
-- No new dependency if it can be avoided.
-- No boilerplate nobody asked for.
-- Deletion over addition. Boring over clever. Fewest files possible.
-- Shortest working diff wins, but only once you understand the problem. The smallest change in the wrong place isn't lazy, it's a second bug.
-- Question complex requests: "Do you actually need X, or does Y cover it?"
-- Pick the edge-case-correct option when two stdlib approaches are the same size, lazy means less code, not the flimsier algorithm.
-- Mark deliberate simplifications that cut a real corner with a known ceiling (global lock, O(n²) scan, naive heuristic) with a `ponytail:` comment naming the ceiling and upgrade path.
+- Follow the project's existing Blueprint/C++ split.
+- Prefer events, delegates, timers, latent actions, animation notifies, and engine callbacks over polling or Tick. Tick is valid for truly continuous behavior; disable it when idle.
+- No new Subsystem, Actor Component, interface, base class, factory, manager, module, or plugin for one consumer unless its Unreal lifetime or reflection boundary requires it.
+- Add reflection macros only for reflection, GC, serialization, replication, editor, or Blueprint needs. Never remove required metadata to shorten code.
+- Use `NewObject`, `CreateDefaultSubobject`, or `SpawnActor` for UObjects/Actors; use tracked or valid weak object references; respect game-thread-only APIs.
+- Use Unreal types at reflected, serialized, replicated, Blueprint, and engine API boundaries; otherwise match the codebase.
+- Use direct asset references when load lifetime is intentional. Use soft references or Asset Manager only when cooking, async loading, memory residency, or optional content requires them.
+- Never hand-edit `.uasset` or `.umap`, and never treat `Binaries`, `Intermediate`, `Saved`, or `DerivedDataCache` as source.
+- Confirm asset deletion with Asset Registry/Reference Viewer and account for maps, config, tags, reflection, soft paths, Primary Asset rules, and dynamic loads.
+- Mark deliberate shortcuts `// ponytail: <ceiling>; upgrade when <measurable trigger>`.
 
-Not lazy about: understanding the problem (read it fully and trace the real flow before picking a rung, a small diff you don't understand is just laziness dressed up as efficiency), input validation at trust boundaries, error handling that prevents data loss, security, accessibility, the calibration real hardware needs (the platform is never the spec ideal, a clock drifts, a sensor reads off), anything explicitly requested. Lazy code without its check is unfinished: non-trivial logic leaves ONE runnable check behind, the smallest thing that fails if the logic breaks (an assert-based demo/self-check or one small test file; no frameworks, no fixtures). Trivial one-liners need no test.
+Never minimize away UObject/Actor lifetime and GC safety, server authority or replication correctness, thread affinity, async completion safety, save/serialization compatibility, cooking and asset reachability, redirect/migration handling, trust-boundary validation, security, crash/data-loss handling, or explicit requirements. Generated headers, reflection macros, module declarations, replication registration, and editor metadata are not bloat when the engine consumes them.
+
+Verify the smallest relevant target build and one focused automation/spec or reproducible smoke check. Asset and Blueprint changes also need an editor validation step; if it was not run, state the exact manual check instead of claiming success.
+
+(This file also governs work on the Ponytail UE5.8 fork.)

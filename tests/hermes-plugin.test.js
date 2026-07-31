@@ -49,7 +49,7 @@ test('Hermes plugin manifest matches runtime skills, hooks, commands, and packag
     .filter((name) => fs.existsSync(path.join(root, 'skills', name, 'SKILL.md')))
     .sort();
 
-  assert.match(manifest, /^name:\s*ponytail$/m);
+  assert.match(manifest, /^name:\s*ponytail-ue58$/m);
   assert.match(manifest, new RegExp(`^version:\\s*${packageJson.version}$`, 'm'));
   assert.match(manifest, new RegExp(`^author:\\s*${packageJson.author.name}$`, 'm'));
   assert.deepEqual(commands.filter((name) => manifest.includes(`  - ${name}`)), commands);
@@ -106,8 +106,8 @@ print(json.dumps({'ctx': ctx}))
 `, { XDG_CONFIG_HOME: tmp });
   const { ctx } = JSON.parse(output);
 
-  assert.match(ctx, /PONYTAIL MODE ACTIVE — level: ultra/);
-  assert.match(ctx, /The best\s+code is the code never written/);
+  assert.match(ctx, /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/);
+  assert.match(ctx, /best UObject is the one the project did not need/);
   assert.match(ctx, /ultra/i);
   assert.doesNotMatch(ctx, /^---/);
   assert.doesNotMatch(ctx, /\|\s*\*\*Lite\*\*/i);
@@ -159,9 +159,9 @@ ctx = mod.build_injected_context('review')
 print(json.dumps({'ctx': ctx}))
 `);
   const { ctx } = JSON.parse(output);
-  assert.match(ctx, /PONYTAIL MODE ACTIVE — level: review/);
-  assert.match(ctx, /Review diffs for unnecessary complexity/);
-  assert.match(ctx, /net: -<N> lines possible/);
+  assert.match(ctx, /PONYTAIL UE5\.8 MODE ACTIVE — level: review/);
+  assert.match(ctx, /Ponytail UE5\.8 review/);
+  assert.match(ctx, /net: -<N> source lines/);
   assert.doesNotMatch(ctx, /^---/);
 });
 
@@ -187,7 +187,7 @@ print(json.dumps({'message': message, 'context': injected['context']}))
 `);
   const data = JSON.parse(output);
   assert.match(data.message, /ultra/);
-  assert.match(data.context, /PONYTAIL MODE ACTIVE — level: ultra/);
+  assert.match(data.context, /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/);
 });
 
 test('Hermes gateway rewrite respects slash access denial', () => {

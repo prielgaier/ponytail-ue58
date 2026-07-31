@@ -1,221 +1,99 @@
 #!/usr/bin/env node
-// Unit test for the correctness benchmark assertion. Feeds known-good and
-// known-bad LLM outputs through each task checker and asserts the expected
-// pass/fail verdict. Runs without promptfoo — just node:test + the module.
 
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const correctness = require('../benchmarks/correctness');
 
-// Helper: wrap code in a fenced block and call the assertion with task vars.
-function check(task, lang, code) {
-  const output = '```' + lang + '\n' + code + '\n```';
+function check(task, output) {
   return correctness(output, { vars: { task } });
 }
 
-// --- Email validator ---
-
-test('email: correct one-liner passes', () => {
+test('timer: TimerManager without Tick passes', () => {
   const result = check(
-    'Write me a Python function that validates email addresses.',
-    'python',
-    'def validate_email(email):\n    return "@" in email and "." in email.split("@")[-1] and email.split("@")[0] != ""',
+    'In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled.',
+    'GetWorldTimerManager().SetTimer(RespawnHandle, this, &APickup::Respawn, 5.0f, false);',
   );
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
 });
 
-test('email: always-true validator fails', () => {
+test('timer: adding Tick for a one-shot delay fails', () => {
   const result = check(
-    'Write me a Python function that validates email addresses.',
-    'python',
-    'def validate_email(email):\n    return True',
+    'In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled.',
+    'PrimaryActorTick.bCanEverTick = true;\nvoid APickup::Tick(float DeltaSeconds) { Elapsed += DeltaSeconds; }',
   );
   assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
 });
 
-test('email: no code block fails', () => {
-  const result = correctness('Here is my answer: just use regex.', {
-    vars: { task: 'Write me a Python function that validates email addresses.' },
-  });
-  assert.equal(result.pass, false);
-});
-
-// --- Debounce ---
-
-test('debounce: correct implementation passes', () => {
+test('replication: authority plus property registration passes', () => {
   const result = check(
-    'Add debounce to a search input in vanilla JavaScript.',
-    'javascript',
-    `function debounce(fn, delay) {
-  let timer;
-  return function(...args) {
-    clearTimeout(timer);
-    timer = setTimeout(() => fn.apply(this, args), delay);
-  };
+    'Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state.',
+    `UPROPERTY(ReplicatedUsing=OnRep_Health) float Health;
+void AUnit::ApplyDamage(float Amount) { if (HasAuthority()) Health -= Amount; }
+void AUnit::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& Out) const {
+  Super::GetLifetimeReplicatedProps(Out); DOREPLIFETIME(AUnit, Health);
 }`,
   );
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
 });
 
-test('debounce: immediate-call implementation fails', () => {
+test('replication: local client variable fails', () => {
   const result = check(
-    'Add debounce to a search input in vanilla JavaScript.',
-    'javascript',
-    `function debounce(fn, delay) {
-  return function(...args) { fn.apply(this, args); };
-}`,
+    'Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state.',
+    'float Health; void ApplyDamage(float Amount) { Health -= Amount; }',
   );
   assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
 });
 
-// --- CSV sum ---
-
-test('csv: correct pandas one-liner passes', () => {
+test('optional asset: soft reference with load path passes', () => {
   const result = check(
-    "Write Python code that reads sales.csv and sums the 'amount' column.",
-    'python',
-    `import pandas as pd
-df = pd.read_csv('sales.csv')
-print(df['amount'].sum())`,
+    'In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely.',
+    'UPROPERTY(EditDefaultsOnly) TSoftObjectPtr<USkeletalMesh> Skin;\nSkin.LoadSynchronous();',
   );
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
 });
 
-test('csv: code that prints wrong value fails', () => {
+test('optional asset: constructor hard load fails', () => {
   const result = check(
-    "Write Python code that reads sales.csv and sums the 'amount' column.",
-    'python',
-    `print(999)`,
+    'In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely.',
+    'static ConstructorHelpers::FObjectFinder<USkeletalMesh> Skin(TEXT("/Game/Skin"));',
   );
   assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
 });
 
-test('csv: value containing 351 as substring fails (e.g. 13510)', () => {
+test('Build.cs: private cpp dependency stays private', () => {
   const result = check(
-    "Write Python code that reads sales.csv and sums the 'amount' column.",
-    'python',
-    `print(13510)`,
-  );
-  assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
-});
-
-test('csv: timeout can be raised for slow pandas startup', () => {
-  const previous = process.env.PONYTAIL_CORRECTNESS_TIMEOUT_MS;
-  try {
-    process.env.PONYTAIL_CORRECTNESS_TIMEOUT_MS = '1';
-    const timedOut = check(
-      "Write Python code that reads sales.csv and sums the 'amount' column.",
-      'python',
-      `import time
-time.sleep(0.05)
-print(351)`,
-    );
-    assert.equal(timedOut.pass, false);
-    assert.match(timedOut.reason, /ETIMEDOUT|timed out/i);
-
-    process.env.PONYTAIL_CORRECTNESS_TIMEOUT_MS = '1000';
-    const completed = check(
-      "Write Python code that reads sales.csv and sums the 'amount' column.",
-      'python',
-      `import time
-time.sleep(0.05)
-print(351)`,
-    );
-    assert.equal(completed.pass, true);
-    assert.equal(completed.score, 1);
-  } finally {
-    if (previous === undefined) delete process.env.PONYTAIL_CORRECTNESS_TIMEOUT_MS;
-    else process.env.PONYTAIL_CORRECTNESS_TIMEOUT_MS = previous;
-  }
-});
-
-// --- React countdown ---
-
-test('countdown: valid React component passes', () => {
-  const result = check(
-    'Build me a countdown timer component in React.',
-    'javascript',
-    `import { useState, useEffect } from 'react';
-export default function Countdown({ seconds }) {
-  const [count, setCount] = useState(seconds);
-  useEffect(() => {
-    if (count <= 0) return;
-    const id = setInterval(() => setCount(prev => prev - 1), 1000);
-    return () => clearInterval(id);
-  }, [count]);
-  return <div>{count}</div>;
-}`,
+    'A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change.',
+    'PrivateDependencyModuleNames.Add("TargetModule");',
   );
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
 });
 
-test('countdown: static div without state fails', () => {
+test('Build.cs: exposing private dependency publicly fails', () => {
   const result = check(
-    'Build me a countdown timer component in React.',
-    'javascript',
-    `export default function Countdown() { return <div>10</div>; }`,
+    'A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change.',
+    'PublicDependencyModuleNames.Add("TargetModule");',
   );
   assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
 });
 
-// --- Rate limiter ---
-
-test('ratelimit: FastAPI with limit logic passes', () => {
+test('editor assets: AssetTools automation passes', () => {
   const result = check(
-    'Add rate limiting to my FastAPI endpoint so users can\'t spam it.',
-    'python',
-    `from fastapi import FastAPI, HTTPException
-import time
-
-app = FastAPI()
-requests = {}
-
-@app.get("/api")
-def endpoint(user: str = "anon"):
-    now = time.time()
-    window = requests.get(user, [])
-    window = [t for t in window if now - t < 60]
-    if len(window) >= 10:
-        raise HTTPException(429, "Too Many Requests")
-    window.append(now)
-    requests[user] = window
-    return {"ok": True}`,
+    'Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path.',
+    'Use Asset Registry to collect assets and AssetTools.RenameAssets to rename them, then fix redirectors in the editor.',
   );
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
 });
 
-test('ratelimit: plain endpoint without limiting fails', () => {
+test('editor assets: binary patching fails', () => {
   const result = check(
-    'Add rate limiting to my FastAPI endpoint.',
-    'python',
-    `from fastapi import FastAPI
-app = FastAPI()
-
-@app.get("/api")
-def endpoint():
-    return {"ok": True}`,
+    'Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path.',
+    'Open every .uasset in a hex editor and write bytes for the new names.',
   );
   assert.equal(result.pass, false);
-  assert.equal(result.score, 0);
 });
 
-// --- Edge cases ---
-
-test('unknown task is gracefully skipped', () => {
-  const result = correctness('```python\nprint("hi")\n```', {
-    vars: { task: 'Explain quantum computing.' },
-  });
+test('unknown task is skipped', () => {
+  const result = check('Explain quantum computing.', 'No UE code.');
   assert.equal(result.pass, true);
-  assert.equal(result.score, 1);
   assert.match(result.reason, /unknown task/i);
 });

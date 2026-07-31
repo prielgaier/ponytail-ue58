@@ -1,8 +1,8 @@
 ---
 name: caveman
 description: >
-  Ultra-compressed communication mode. Cuts token usage ~75% by speaking like caveman
-  while keeping full technical accuracy. Supports intensity levels: lite, full (default), ultra,
+  Ultra-compressed communication control. Speaks tersely while keeping technical accuracy.
+  Supports intensity levels: lite, full (default), ultra,
   wenyan-lite, wenyan-full, wenyan-ultra.
   Use when user says "caveman mode", "talk like caveman", "use caveman", "less tokens",
   "be brief", or invokes /caveman. Also auto-triggers when token efficiency is requested.
@@ -36,20 +36,20 @@ Yes: "Bug in auth middleware. Token expiry check use `<` not `<=`. Fix:"
 | **wenyan-full** | Maximum classical terseness. Fully 文言文. 80-90% character reduction. Classical sentence patterns, verbs precede objects, subjects often omitted, classical particles (之/乃/為/其) |
 | **wenyan-ultra** | Extreme abbreviation while keeping classical Chinese feel. Maximum compression, ultra terse |
 
-Example — "Why React component re-render?"
-- lite: "Your component re-renders because you create a new object reference each render. Wrap it in `useMemo`."
-- full: "New object ref each render. Inline object prop = new ref = re-render. Wrap in `useMemo`."
-- ultra: "Inline obj prop → new ref → re-render. `useMemo`."
-- wenyan-lite: "組件頻重繪，以每繪新生對象參照故。以 useMemo 包之。"
-- wenyan-full: "物出新參照，致重繪。useMemo .Wrap之。"
-- wenyan-ultra: "新參照→重繪。useMemo Wrap。"
+Example — "Why does this Actor Tick?"
+- lite: "The Actor ticks because `PrimaryActorTick.bCanEverTick` is enabled. Disable it if no per-frame work is required."
+- full: "`bCanEverTick` enabled. No per-frame work? Disable Tick."
+- ultra: "`bCanEverTick=true` → Tick. No frame work → disable."
+- wenyan-lite: "Actor逐幀運行，因bCanEverTick啟用。若無逐幀工作則停之。"
+- wenyan-full: "bCanEverTick啟，故Tick。無逐幀事則停。"
+- wenyan-ultra: "bCanEverTick→Tick。無逐幀事→停。"
 
-Example — "Explain database connection pooling."
-- lite: "Connection pooling reuses open connections instead of creating new ones per request. Avoids repeated handshake overhead."
-- full: "Pool reuse open DB connections. No new connection per request. Skip handshake overhead."
-- ultra: "Pool = reuse DB conn. Skip handshake → fast under load."
-- wenyan-full: "池reuse open connection。不每req新開。skip handshake overhead。"
-- wenyan-ultra: "池reuse conn。skip handshake → fast。"
+Example — "Explain soft object references."
+- lite: "A soft object reference stores an asset path without loading the asset until requested."
+- full: "Soft ref stores asset path. Asset stays unloaded until requested."
+- ultra: "Soft ref = path. Load on demand."
+- wenyan-full: "軟參照存資產路徑，需時方載。"
+- wenyan-ultra: "軟參照=路徑。需時載。"
 
 ## Auto-Clarity
 

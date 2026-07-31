@@ -13,7 +13,7 @@ const path = require('path');
 
 const root = path.join(__dirname, '..');
 const MANIFEST = 'gemini-extension.json';
-const EXTENSION_NAME = 'ponytail';
+const EXTENSION_NAME = 'ponytail-ue58';
 // Floating refs are a supply-chain footgun; the manifest version must be pinned.
 const PINNED_SEMVER = /^\d+\.\d+\.\d+$/;
 const VERSIONED_MANIFESTS = [
@@ -32,9 +32,9 @@ const GEMINI_AUTO_HOOKS = 'hooks/hooks.json';
 // Same load-bearing phrases asserted by scripts/check-rule-copies.js: the file
 // contextFileName points at must actually carry the rules, not just exist.
 const RULE_INVARIANTS = [
-  'lazy senior',
-  'input validation at trust boundaries',
-  'naive heuristic',
+  'Unreal Engine 5.8',
+  'Text grep alone cannot prove',
+  'server authority or replication correctness',
 ];
 
 function read(relPath) {

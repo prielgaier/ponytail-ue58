@@ -13,10 +13,8 @@ const { spawn } = require('child_process');
 
 const root = path.join(__dirname, '..');
 const HOOKS_JSON = 'hooks/claude-codex-hooks.json';
-const HOST_PLUGIN_MANIFESTS = [
-  '.claude-plugin/plugin.json',
-  '.codex-plugin/plugin.json',
-];
+const CLAUDE_PLUGIN_MANIFEST = '.claude-plugin/plugin.json';
+const CODEX_PLUGIN_MANIFEST = '.codex-plugin/plugin.json';
 // cmd.exe variable syntax (%FOO%); PowerShell leaves it literal, breaking the path.
 const CMD_VAR_SYNTAX = /%[A-Za-z_][A-Za-z0-9_]*%/;
 // PowerShell 5.1 rejects these POSIX shell guards when a host runs `command`.
@@ -106,9 +104,10 @@ test('ponytail-mode-tracker self-exits when stdin never closes (no freeze)', asy
   assert.equal(code, 0, 'hook must exit cleanly when stdin never closes');
 });
 
-test('Claude and Codex manifests point at the shared host-specific hook config', () => {
-  for (const rel of HOST_PLUGIN_MANIFESTS) {
-    const manifest = JSON.parse(fs.readFileSync(path.join(root, rel), 'utf8'));
-    assert.equal(manifest.hooks, `./${HOOKS_JSON}`, `${rel} must not rely on root hooks auto-discovery`);
-  }
+test('Claude uses its hook config while the Codex manifest stays schema-valid', () => {
+  const claude = JSON.parse(fs.readFileSync(path.join(root, CLAUDE_PLUGIN_MANIFEST), 'utf8'));
+  const codex = JSON.parse(fs.readFileSync(path.join(root, CODEX_PLUGIN_MANIFEST), 'utf8'));
+  assert.equal(claude.hooks, `./${HOOKS_JSON}`, 'Claude must use the shared hook config');
+  assert.equal(codex.hooks, undefined, 'Codex manifests do not support a hooks field');
+  assert.equal(codex.skills, './skills/');
 });

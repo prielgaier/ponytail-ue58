@@ -1,13 +1,13 @@
 {
-  "name": "ponytail",
-  "version": "4.8.4",
-  "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+  "name": "ponytail-ue58",
+  "version": "1.0.0",
+  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit safety boundaries.",
   "author": {
-    "name": "Dietrich Gebert",
-    "url": "https://github.com/DietrichGebert"
+    "name": "prielgaier",
+    "url": "https://github.com/prielgaier"
   },
-  "homepage": "https://github.com/DietrichGebert/ponytail",
-  "repository": "https://github.com/DietrichGebert/ponytail",
+  "homepage": "https://github.com/prielgaier/ponytail-ue58",
+  "repository": "https://github.com/prielgaier/ponytail-ue58",
   "license": "MIT",
-  "keywords": ["yagni", "minimalism", "code-review", "productivity"]
+  "keywords": ["unreal-engine", "ue5", "ue5.8", "yagni", "code-review"]
 }

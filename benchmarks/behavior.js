@@ -1,54 +1,59 @@
-// Behavior gate: does the ponytail ruleset actually PRODUCE its refined
-// behaviors, not just carry the text? One check per probe (vars.probe), each
-// targeting a rule that a field review (rcstack, phases 0-8) showed mattered:
-//   hardware     - "hardware is never the spec ideal, leave the calibration knob"
-//   explanation  - "explanation the user explicitly asked for is not debt"
-//   onecheck     - "lazy code without its check is unfinished"
-//
-// Heuristic graders, same spirit as loc.js / correctness.js. The graders
-// themselves are proven by tests/behavior.test.js (RED/GREEN, no API key).
-//
-// Metric: `behavior` (1 = behavior present, 0 = absent).
+// UE5.8 behavior gates. These check whether the instructions produce the
+// project-aware safety behaviors that a generic "write less" prompt misses.
 
-function proseOf(text) {
-  return String(text || '').replace(/```[\s\S]*?```/g, ' ').replace(/\s+/g, ' ').trim();
+function result(pass, reason) {
+  return { pass, score: pass ? 1 : 0, reason };
 }
 
 const CHECKS = {
-  // Treats the device as non-ideal: leaves a tunable knob or flags per-unit drift.
-  // A passing mention of "calibration" is not enough; it must be actionable.
-  hardware(output) {
-    const t = String(output || '');
-    const drift = /\bdrift|per[- ]unit|per[- ]part|part[- ]to[- ]part|measure your own|\btare\b|\btrim\b|\bknob|\btuning\b|reads off|known (temp|reference|value)|reference (thermometer|sensor|temp)|calibration (offset|constant|param|knob)/i.test(t);
-    return drift
-      ? { pass: true, reason: 'Leaves a calibration knob / flags per-unit drift.' }
-      : { pass: false, reason: 'Treats the hardware as ideal; no calibration knob.' };
+  'asset-deletion'(output) {
+    const text = String(output || '');
+    const evidence = /Asset Registry|Reference Viewer/i.test(text);
+    const hiddenRefs = /soft (reference|path)|config|map|Gameplay Tag|Primary Asset|dynamic load/i.test(text);
+    const rejectsGrep = /grep.{0,40}(not|isn.t|cannot|insufficient)|not.{0,30}grep/i.test(text);
+    return result(evidence && hiddenRefs && rejectsGrep,
+      evidence && hiddenRefs && rejectsGrep
+        ? 'Requires runtime-aware asset evidence beyond grep.'
+        : 'Asset deletion lacks Asset Registry/hidden-reference safeguards.');
   },
 
-  // Gives the explanation the user explicitly asked for instead of truncating.
-  explanation(output) {
-    const p = proseOf(output);
-    const words = p ? p.split(' ').length : 0;
-    const structured = /(\d+[.)]\s|[-*]\s)/.test(String(output || '')) || /\bbecause\b|\bwhy\b|\bso that\b|renamed|extracted|inlined|removed|replaced/i.test(p);
-    return words >= 45 && structured
-      ? { pass: true, reason: `Gave the requested write-up (${words} words of prose).` }
-      : { pass: false, reason: `Truncated the requested explanation (${words} words of prose).` };
+  lifetime(output) {
+    const text = String(output || '');
+    const weak = /TWeakObjectPtr|weak (object )?reference|IsValid\s*\(/i.test(text);
+    const teardown = /destroy|teardown|world travel|PIE end|cancel/i.test(text);
+    const gameThread = /game\s*thread|AsyncTask\s*\([^)]*GameThread/i.test(text);
+    return result(weak && teardown && gameThread,
+      weak && teardown && gameThread
+        ? 'Preserves UObject lifetime, teardown, and thread affinity.'
+        : 'Missing weak lifetime, teardown, or game-thread handling.');
   },
 
-  // Leaves ONE runnable check behind for non-trivial logic.
-  onecheck(output) {
-    const t = String(output || '');
-    const hasCheck = /\bassert\b|def\s+test_|if\s+__name__|unittest|pytest|console\.assert|\bexpect\(|\bdescribe\(|\bit\(/.test(t);
-    return hasCheck
-      ? { pass: true, reason: 'Left a runnable check (assert/test/demo).' }
-      : { pass: false, reason: 'No runnable check left behind.' };
+  replication(output) {
+    const text = String(output || '');
+    const authority = /server authorit|HasAuthority|server RPC/i.test(text);
+    const state = /ReplicatedUsing|DOREPLIFETIME|RepNotify|replicated propert/i.test(text);
+    const topology = /late join|dedicated server|listen server|remote client/i.test(text);
+    return result(authority && state && topology,
+      authority && state && topology
+        ? 'Keeps authority, replicated state, and topology verification.'
+        : 'Missing authority, state replication, or topology verification.');
+  },
+
+  verification(output) {
+    const text = String(output || '');
+    const build = /UnrealBuildTool|Build\.(bat|sh)|RunUAT|target build|compile the .*target/i.test(text);
+    const focused = /Automation Test|Spec|smoke test|commandlet/i.test(text);
+    const honest = /manual|not run|still required|cannot run/i.test(text);
+    return result(build && focused && honest,
+      build && focused && honest
+        ? 'Names build, focused check, and honest manual boundary.'
+        : 'Verification lacks a build, focused check, or manual boundary.');
   },
 };
 
-module.exports = (output, context) => {
-  const probe = context && context.vars && context.vars.probe;
+module.exports = (output, context = {}) => {
+  const probe = context.vars && context.vars.probe;
   const check = CHECKS[probe];
-  if (!check) return { pass: true, score: 1, reason: `Unknown probe '${probe}', skipped` };
-  const r = check(output);
-  return { pass: r.pass, score: r.pass ? 1 : 0, reason: r.reason };
+  if (!check) return result(true, `Unknown probe '${probe}', skipped`);
+  return check(output);
 };

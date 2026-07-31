@@ -17,6 +17,6 @@ test("resolveMode falls back to a runtime intensity for off/unknown/empty", () =
 
 test("buildInstructions returns the ruleset tagged with the resolved mode", () => {
   const text = buildInstructions("ultra");
-  assert.match(text, /PONYTAIL MODE ACTIVE/);
+  assert.match(text, /PONYTAIL UE5\.8 MODE ACTIVE/);
   assert.match(text, /ultra/);
 });

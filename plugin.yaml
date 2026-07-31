@@ -1,7 +1,7 @@
-name: ponytail
-version: 4.8.4
-description: Lazy senior dev mode for Hermes Agent, always-on context, bundled skills, and slash commands.
-author: Dietrich Gebert
+name: ponytail-ue58
+version: 1.0.0
+description: Minimal engine-native Unreal Engine 5.8 development with always-on context and bundled skills.
+author: prielgaier
 provides_hooks:
   - pre_llm_call
   - pre_gateway_dispatch

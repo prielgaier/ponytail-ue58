@@ -1,14 +1,14 @@
 {
-  "name": "ponytail",
+  "name": "ponytail-ue58",
   "interface": {
-    "displayName": "Ponytail"
+    "displayName": "Ponytail UE5.8"
   },
   "plugins": [
     {
-      "name": "ponytail",
+      "name": "ponytail-ue58",
       "source": {
         "source": "url",
-        "url": "https://github.com/DietrichGebert/ponytail.git",
+        "url": "https://github.com/prielgaier/ponytail-ue58.git",
         "ref": "main"
       },
       "policy": {

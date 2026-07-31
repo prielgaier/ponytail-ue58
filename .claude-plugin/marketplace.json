@@ -1,15 +1,15 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
-  "name": "ponytail",
-  "description": "Lazy senior dev mode for AI agents. The best code is the code you never wrote.",
+  "name": "ponytail-ue58",
+  "description": "Ponytail minimal-engineering mode, converted specifically for Unreal Engine 5.8.",
   "owner": {
-    "name": "Dietrich Gebert",
-    "url": "https://github.com/DietrichGebert"
+    "name": "prielgaier",
+    "url": "https://github.com/prielgaier"
   },
   "plugins": [
     {
-      "name": "ponytail",
-      "description": "Forces the laziest solution that works. YAGNI, stdlib first, one line over fifty.",
+      "name": "ponytail-ue58",
+      "description": "Prefer existing project and UE5.8 systems while preserving engine safety boundaries.",
       "source": "./",
       "category": "productivity"
     }

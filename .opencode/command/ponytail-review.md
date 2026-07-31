@@ -1,5 +1,5 @@
 ---
-description: Review changes for over-engineering, what can be deleted
+description: Review a UE5.8 diff for removable architecture and engine duplication
 ---
 
-Review the current code changes for over-engineering only, not correctness. One line per finding: L<line>: <tag> <what to cut>. <replacement>. Tags: delete (dead code/speculative feature), stdlib (reinvented standard library), native (dependency doing what the platform does), yagni (abstraction with one implementation), shrink (same logic, fewer lines). End with the net lines removable. If nothing to cut: 'Lean already. Ship.'
+Review the current UE5.8 diff for over-engineering only. Inspect the `.uproject`, affected modules, Blueprint/C++ boundary, and reference flow. Use `<file>:L<line>: <tag> <cut>. <UE/project-native replacement>.` Tags: `delete`, `native`, `tick`, `layer`, `reflect`, `dependency`, `shrink`. Never call an asset dead from grep alone or remove required GC, replication, serialization, cook, redirect, or editor metadata. End with measurable cuts. If none: `Lean for UE5.8 already. Ship.`

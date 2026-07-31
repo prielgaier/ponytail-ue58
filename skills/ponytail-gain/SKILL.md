@@ -1,50 +1,42 @@
 ---
 name: ponytail-gain
 description: >
-  Show ponytail's measured impact as a compact scoreboard: less code, less
-  cost, more speed, from the benchmark medians. One-shot display, not a
-  persistent mode, and not a per-repo number. Trigger: /ponytail-gain,
-  "ponytail gain", "what does ponytail save", "show ponytail impact",
-  "ponytail scoreboard".
+  Produce an evidence-only Unreal Engine 5.8 simplification scoreboard from the
+  current diff: source lines/files, reflected API, Tick sites, module/plugin
+  dependencies, and assets added or removed, with verification status. Use for
+  /ponytail-gain, UE5.8 simplification impact, or what Ponytail changed. Never
+  invent performance, package-size, cook-time, token, or cost savings.
 ---
 
-# Ponytail Gain
+# Ponytail UE5.8 gain
 
-Display this scoreboard when invoked. One-shot: do NOT change mode, write flag
-files, or persist anything.
+Measure the current repository diff. Do not reuse the upstream Ponytail web
+benchmark numbers: they were not measured on Unreal Engine and are not evidence
+for this fork.
 
-The figures are the published benchmark medians (5 everyday tasks: email
-validator, debounce, CSV sum, countdown timer, rate limiter; three models:
-Haiku, Sonnet, Opus). They are measured, not computed from the current repo.
-Source: `benchmarks/` and the README.
+## Collect
+
+- `git diff --numstat` and `git diff --stat` for source/file deltas.
+- Added/removed `UCLASS`, `USTRUCT`, `UENUM`, `UFUNCTION`, and `UPROPERTY` declarations.
+- Added/removed Tick enablement and `Tick` overrides.
+- Added/removed dependencies in `.uproject`, `.uplugin`, and `*.Build.cs`.
+- Added/removed binary assets by path only; never claim their internal effect without editor evidence.
+- Exact build, automation, editor, network, cook, or runtime checks that actually ran.
 
 ## Scoreboard
 
-Render plain ASCII bars. The bar length shows the measured range; the label
-carries the exact figure:
-
-```
-  ponytail gain                     benchmark median · 5 tasks · 3 models
-
-  Lines of code   no-skill  ████████████████████  100%
-                  ponytail  ██▌·················    6–20%   ▼ 80–94%
-  Cost            no-skill  ████████████████████  100%
-                  ponytail  █████▌··············   23–53%  ▼ 47–77%
-  Speed           ponytail  ▸ 3–6× faster
-
-  This repo:  /ponytail-debt  (shortcuts you deferred)
-              /ponytail-audit (what's still cuttable)
+```text
+Ponytail UE5.8 gain — current diff only
+source       +A / -D lines, net N across F files
+reflection   +R / -R members
+tick         +T / -T sites
+dependencies +P / -P modules/plugins
+assets       +X / -Y files (path count only)
+verification <passed checks or outstanding manual checks>
 ```
 
-## Honesty boundary
+If there is no comparison baseline, say so. Never convert code deletion into
+FPS, memory, package size, cook time, cost, or token claims. Those require
+before/after measurement on the same project, target, hardware, and scenario.
 
-These are benchmark medians, not this repo. NEVER print a per-repo savings
-number ("you saved X lines/tokens here"): the unbuilt version was never
-written, so there is no real baseline to subtract from in a live repo. The
-only real per-repo figures come from `/ponytail-debt` (a counted ledger), and
-this card points there instead of inventing one.
-
-## Boundaries
-
-One-shot display. Edits nothing, changes no mode.
-"stop ponytail" or "normal mode": revert.
+One-shot report. Change no files or mode.

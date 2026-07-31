@@ -14,15 +14,15 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const HOMEPAGE = 'https://github.com/DietrichGebert/ponytail';
+const HOMEPAGE = 'https://github.com/prielgaier/ponytail-ue58';
 
 const DESCRIPTIONS = {
-  'ponytail': 'Lazy senior dev mode for any coding task (write, refactor, fix, review): YAGNI, stdlib first, no unrequested abstractions. Not for non-coding requests.',
-  'ponytail-review': 'Review a diff for over-engineering. Finds what to delete: reinvented stdlib, needless deps, speculative abstractions. One line per finding.',
-  'ponytail-audit': 'Audit the whole repo for over-engineering. A ranked list of what to delete, simplify, or replace with stdlib or native features.',
-  'ponytail-debt': 'Harvest every ponytail: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report.',
-  'ponytail-gain': 'Show ponytail measured impact as a scoreboard: less code, less cost, more speed, from the benchmark medians. One-shot display.',
-  'ponytail-help': "Quick reference for ponytail's modes, skills, and commands. One-shot display.",
+  'ponytail': 'UE5.8 implementation mode: inspect project ownership, prefer native engine facilities, and make the smallest reflection-safe change.',
+  'ponytail-review': 'Review a UE5.8 diff for needless Tick, abstractions, modules, dependencies, reflection, and unsafe asset assumptions.',
+  'ponytail-audit': 'Audit a UE5.8 repository for unnecessary systems, Tick usage, reflection, dependencies, and asset-loading complexity.',
+  'ponytail-debt': 'Collect UE5.8 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries.',
+  'ponytail-gain': 'Summarize measurable simplification in the current UE5.8 diff without inventing runtime, cook, package, or cost claims.',
+  'ponytail-help': 'Quick reference for Ponytail UE5.8 modes, skills, safety boundaries, and commands.',
 };
 
 const NAMES = Object.keys(DESCRIPTIONS);

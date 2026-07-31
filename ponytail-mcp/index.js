@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Ponytail MCP server: serves the lazy-senior-dev ruleset over stdio as a
+// Ponytail UE5.8 MCP server: serves the Unreal-specific ruleset over stdio as a
 // prompt (user-invoked) and a tool (for hosts that pull context via tools).
 // It does NOT replace the always-on adapters; it's the clean option for hosts
 // whose only injection point is the prompt menu (see #70).
@@ -13,7 +13,7 @@ import { MODES, buildInstructions, resolveMode } from "./instructions.js";
 const { version } = JSON.parse(
   await fs.promises.readFile(new URL("../package.json", import.meta.url), "utf8")
 );
-const server = new McpServer({ name: "ponytail", version });
+const server = new McpServer({ name: "ponytail-ue58", version });
 
 const modeArg = z
   .enum(MODES)
@@ -23,8 +23,8 @@ const modeArg = z
 server.registerPrompt(
   "ponytail",
   {
-    title: "Ponytail mode",
-    description: "Lazy senior dev instructions: YAGNI, stdlib first, the smallest correct change.",
+    title: "Ponytail UE5.8 mode",
+    description: "UE5.8 instructions: inspect ownership, prefer native engine facilities, and make the smallest safe change.",
     argsSchema: { mode: modeArg },
   },
   ({ mode }) => ({
@@ -35,8 +35,8 @@ server.registerPrompt(
 server.registerTool(
   "ponytail_instructions",
   {
-    title: "Ponytail instructions",
-    description: "Return the Ponytail ruleset for the given intensity (lite, full, or ultra).",
+    title: "Ponytail UE5.8 instructions",
+    description: "Return the Ponytail UE5.8 ruleset for the given intensity (lite, full, or ultra).",
     inputSchema: { mode: modeArg },
     outputSchema: { mode: z.string(), instructions: z.string() },
     annotations: { readOnlyHint: true, openWorldHint: false },

@@ -1,4 +1,4 @@
-// ponytail — OpenCode plugin.
+// Ponytail UE5.8 OpenCode plugin.
 //
 // Injects the ponytail ruleset into every chat's system prompt at the active
 // intensity, persists /ponytail mode switches, and registers slash commands so
@@ -7,7 +7,7 @@
 // source of truth.
 //
 // OpenCode loads this as a server plugin — add it to your opencode.json:
-//   { "plugin": ["@dietrichgebert/ponytail"] }
+//   { "plugin": ["@prielgaier/ponytail-ue58"] }
 
 import { createRequire } from 'module';
 import fs from 'fs';
@@ -45,7 +45,7 @@ function writeMode(mode) {
 
 export default async ({ client } = {}) => {
   const log = (level, message) => {
-    try { client && client.app && client.app.log({ body: { service: 'ponytail', level, message } }); } catch (e) {}
+    try { client && client.app && client.app.log({ body: { service: 'ponytail-ue58', level, message } }); } catch (e) {}
   };
 
   const ponytailSkillsDir = path.resolve(__dirname, '../../skills');

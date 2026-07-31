@@ -1,41 +1,38 @@
 ---
 name: ponytail-debt
-description: "Harvest every ponytail: shortcut comment into one debt ledger, so deferrals get tracked instead of forgotten. One-shot report."
-homepage: https://github.com/DietrichGebert/ponytail
+description: "Collect UE5.8 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries."
+homepage: https://github.com/prielgaier/ponytail-ue58
 license: MIT
 ---
 
-Every deliberate ponytail shortcut is marked with a `ponytail:` comment naming
-its ceiling and upgrade path. This collects them into one ledger so a deferral
-can't quietly become permanent.
+# Ponytail UE5.8 debt ledger
+
+Collect deliberate shortcuts marked as:
+
+`ponytail: <ceiling>; upgrade when <measurable trigger>`
 
 ## Scan
 
-Grep the repo for comment markers, skipping `node_modules`, `.git`, and build
-output:
+Search source, Build.cs, config, scripts, and text assets while skipping `.git`,
+`Binaries`, `Intermediate`, `Saved`, and `DerivedDataCache`. Recognize `//`,
+`#`, and `;` comment prefixes. Use `rg -n "ponytail:"` when available.
 
-`grep -rnE '(#|//) ?ponytail:' .`  (add other comment prefixes if your stack uses them)
+For every marker, record:
 
-Each hit is one ledger row. The comment prefix keeps prose that merely mentions
-the convention out of the ledger.
+`<file>:<line> | owner/module | ceiling | upgrade trigger | verification boundary`
 
-## Output
+Verification boundaries include editor asset validation, Blueprint compile,
+target build, network topology, cook/package, async teardown, or runtime
+profiling. Pull facts from the marker and nearby code; do not invent them.
 
-One row per marker, grouped by file:
+Tag a marker:
 
-`<file>:<line>, <what was simplified>. ceiling: <the limit named>. upgrade: <the trigger to revisit>.`
+- `no-trigger` when no measurable revisit condition exists.
+- `stale` when the trigger is already met with repository evidence.
+- `asset-check` when the upgrade touches binary assets or reachability.
+- `network-check` when authority or replication is involved.
 
-The convention is `ponytail: <ceiling>, <upgrade path>`, so pull the ceiling
-and the trigger straight from the comment. Want an owner per row too? add
-`git blame -L<line>,<line>`.
+End with `<N> markers; <M> no-trigger; <S> stale; <A> asset/editor checks.`
+Nothing found: `No ponytail: debt. Clean UE5.8 ledger.`
 
-Flag the rot risk: any `ponytail:` comment that names no upgrade path or
-trigger gets a `no-trigger` tag, those are the ones that silently rot.
-
-End with `<N> markers, <M> with no trigger.` Nothing found: `No ponytail: debt. Clean ledger.`
-
-## Boundaries
-
-Reads and reports only, changes nothing. To persist it, ask and it writes the
-ledger to a file (e.g. `PONYTAIL-DEBT.md`). One-shot. "stop ponytail-debt" or
-"normal mode" to revert.
+Read and report only. Write a ledger file only when explicitly requested.

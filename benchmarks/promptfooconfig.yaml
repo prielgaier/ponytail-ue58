@@ -1,12 +1,4 @@
-# Ponytail benchmark: code size + cost across three arms, same model, same tasks.
-#
-#   Run:   npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml
-#   View:  npx promptfoo@latest view
-#   Share: npx promptfoo@latest share   (publishes a hosted report URL)
-#
-# Needs ANTHROPIC_API_KEY in the environment or a .env file (see benchmarks/README.md).
-# Caveman arm uses JuliusBrussee/caveman SKILL.md (MIT), vendored at arms/caveman-SKILL.md.
-description: "Ponytail vs caveman vs no-skill: same model, same tasks. Measures code LOC (deterministic) and tokens/cost (API telemetry)."
+description: "Ponytail UE5.8 vs terse-prose control vs no skill: structural correctness and code LOC."
 
 providers:
   - id: anthropic:messages:claude-haiku-4-5-20251001
@@ -20,9 +12,9 @@ prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
   - id: file://arms/caveman.js
-    label: caveman
+    label: terse-prose control
   - id: file://arms/ponytail.js
-    label: ponytail
+    label: ponytail UE5.8
 
 defaultTest:
   assert:
@@ -34,8 +26,8 @@ defaultTest:
       metric: correct
 
 tests:
-  - vars: { task: "Write me a Python function that validates email addresses." }
-  - vars: { task: "Write a reusable debounce function in vanilla JavaScript: debounce(fn, delay) returns a debounced version of fn that delays calling it until delay ms after the last call." }
-  - vars: { task: "Write Python code that reads sales.csv and sums the 'amount' column." }
-  - vars: { task: "Build me a countdown timer component in React that counts down from a given number of seconds." }
-  - vars: { task: "Add rate limiting to my FastAPI endpoint so users can't spam it." }
+  - vars: { task: "In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." }
+  - vars: { task: "Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state." }
+  - vars: { task: "In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely." }
+  - vars: { task: "A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change." }
+  - vars: { task: "Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path." }

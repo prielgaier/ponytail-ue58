@@ -85,7 +85,7 @@ export default function ponytailExtension(pi) {
     const icon = levelIcons[currentMode] || "";
     const label = currentMode.toUpperCase();
     const indicator = isActive ? theme.fg("accent", "●") : theme.fg("dim", "○");
-    c.ui.setStatus("ponytail", indicator + " 🐴 " + theme.fg("muted", "ponytail: ") + theme.fg("text", icon + " " + label));
+    c.ui.setStatus("ponytail", indicator + " 🐴 " + theme.fg("muted", "ponytail UE5.8: ") + theme.fg("text", icon + " " + label));
   }
 
   const setMode = (mode, ctx) => {
@@ -95,7 +95,7 @@ export default function ponytailExtension(pi) {
     currentMode = normalized;
     pi.appendEntry("ponytail-mode", { mode: normalized });
     syncStatus(ctx);
-    ctx?.ui?.notify?.(`Ponytail mode set to ${normalized}.`, "info");
+    ctx?.ui?.notify?.(`Ponytail UE5.8 mode set to ${normalized}.`, "info");
   };
 
   const sendAlias = (skillName, args, ctx) => {
@@ -117,7 +117,7 @@ export default function ponytailExtension(pi) {
       const parsed = parsePonytailCommand(args, configuredDefaultMode);
 
       if (parsed.type === "status") {
-        ctx?.ui?.notify?.(`Ponytail: current ${currentMode} • default ${configuredDefaultMode}`, "info");
+        ctx?.ui?.notify?.(`Ponytail UE5.8: current ${currentMode} • default ${configuredDefaultMode}`, "info");
         return;
       }
 
@@ -127,7 +127,7 @@ export default function ponytailExtension(pi) {
           if (written) {
             configuredDefaultMode = getDefaultMode();
             const message = configuredDefaultMode === written
-              ? `Default Ponytail mode set to ${written}.`
+              ? `Default Ponytail UE5.8 mode set to ${written}.`
               : `Saved default ${written}, but env override keeps default at ${configuredDefaultMode}.`;
             ctx?.ui?.notify?.(message, "info");
           }
@@ -187,7 +187,7 @@ export default function ponytailExtension(pi) {
     currentMode = resolveSessionMode(entries, configuredDefaultMode);
     syncStatus(ctx);
     if (!getQuietStartup()) {
-      ctx?.ui?.notify?.(`Ponytail loaded: ${currentMode}`, "info");
+      ctx?.ui?.notify?.(`Ponytail UE5.8 loaded: ${currentMode}`, "info");
     }
   });
 

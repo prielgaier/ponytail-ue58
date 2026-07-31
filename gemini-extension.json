@@ -1,6 +1,6 @@
 {
-  "name": "ponytail",
-  "version": "4.8.4",
-  "description": "Lazy senior dev mode. Forces the simplest, shortest solution that actually works: YAGNI, stdlib first, no unrequested abstractions.",
+  "name": "ponytail-ue58",
+  "version": "1.0.0",
+  "description": "Ponytail minimal-engineering mode converted specifically for Unreal Engine 5.8.",
   "contextFileName": "AGENTS.md"
 }

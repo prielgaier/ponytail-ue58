@@ -1,17 +1,17 @@
-# Examples
+# UE5.8 examples
 
-Real model output, verbatim from benchmark runs, the same task answered by the same model
-with no skill (`## Without Ponytail`) and with ponytail (`## With Ponytail`), so you can
-compare side by side. Model: Claude Haiku 4.5, temperature 1, source `benchmarks/output.json`.
+These examples show the decisions Ponytail UE5.8 is designed to produce. They
+are authored behavioral fixtures, not measured benchmark output.
 
-These are not hand-written. Reproduce them yourself:
-`npx promptfoo@latest eval -c benchmarks/promptfooconfig.yaml`. Method, all three models, and
-median-of-10 numbers: [../benchmarks/](../benchmarks/).
+| Request | Smaller UE5.8 path |
+|---|---|
+| [Run a check every second](tick-vs-timer.md) | `FTimerManager`, not Actor Tick |
+| [Create a global service](singleton-vs-subsystem.md) | narrow UE lifetime, not a hand-rolled singleton |
+| [Extract one-use behavior](component-yagni.md) | keep it in the owner until reuse/lifecycle is real |
+| [Reference an asset](hard-vs-soft-reference.md) | choose by load lifetime, not fashion |
+| [Replicate health](replication-boundary.md) | preserve authority and late-join state |
+| [Use another module](build-dependency.md) | smallest correct `Build.cs` dependency surface |
 
-| Example | Without (LOC) | With (LOC) |
-|---|--:|--:|
-| [Email Validation](email-validation.md) | 75 | 3 |
-| [Debounce](debounce.md) | 116 | 10 |
-| [CSV Sum](csv-sum.md) | 20 | 3 |
-| [Countdown Timer](react-countdown.md) | 267 | 9 |
-| [Rate Limiting](rate-limit.md) | 128 | 10 |
+The expected result is not always the fewest C++ lines. Reflection,
+replication, serialization, cooking, and asset metadata count as required when
+UE5.8 consumes them.

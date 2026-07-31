@@ -23,7 +23,7 @@ function readJSON(relPath) {
 
 test('copilot plugin command directory includes ponytail-debt', () => {
   const manifest = readJSON('.github/plugin/plugin.json');
-  assert.equal(manifest.name, 'ponytail');
+  assert.equal(manifest.name, 'ponytail-ue58');
   assert.equal(manifest.commands, 'commands/');
 
   for (const file of REQUIRED_COMMAND_FILES) {
