@@ -1,16 +1,16 @@
 ---
 name: ponytail-audit
 description: >
-  Audit an entire Unreal Engine 5.8 repository for avoidable Tick, custom
+  Audit an entire Unreal Engine 5.0 repository for avoidable Tick, custom
   managers, one-use Subsystems/Components/interfaces, unnecessary reflection,
   excess modules/plugins, duplicated engine features, and safely removable
-  code or assets. Use for repo-wide UE5.8 complexity audits, bloat audits,
+  code or assets. Use for repo-wide UE5.0 complexity audits, bloat audits,
   deletion candidates, or /ponytail-audit. Report only; do not apply fixes.
 ---
 
-# Ponytail UE5.8 audit
+# Ponytail UE5.0 audit
 
-Audit the complete UE5.8 project, not only the diff. Read the `.uproject`,
+Audit the complete UE5.0 project, not only the diff. Read the `.uproject`,
 `.uplugin`, targets, `Build.cs`, config, source layout, content roots, and project
 instructions first. Skip `Binaries`, `Intermediate`, `Saved`, and
 `DerivedDataCache`.
@@ -21,7 +21,7 @@ instructions first. Skip `Binaries`, `Intermediate`, `Saved`, and
 - Tick-enabled classes whose work can be event-, delegate-, timer-, notify-, or callback-driven.
 - One-use managers, Subsystems, Actor Components, interfaces, base classes, factories, and editor modules.
 - Reflected functions/properties/types with no GC, serialization, replication, editor, or Blueprint consumer.
-- Wrappers around UE5.8 facilities already used elsewhere in the project.
+- Wrappers around UE5.0 facilities already used elsewhere in the project.
 - Duplicate settings, Data Assets, Data Tables, Gameplay Tags, input mappings, and project helpers.
 - Hard/soft asset-reference complexity that does not match the intended load lifetime.
 - Source or assets that are safe to delete with runtime-aware reference evidence.
@@ -47,4 +47,4 @@ End with:
 
 `net: -<N> source lines, -<M> reflected members, -<P> module/plugin dependencies possible; <A> asset deletions verified, <U> need editor verification.`
 
-If nothing is safely removable: `Lean for UE5.8 already. Ship.` Report only.
+If nothing is safely removable: `Lean for UE5.0 already. Ship.` Report only.

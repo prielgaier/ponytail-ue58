@@ -1,4 +1,4 @@
-# UE5.8 safety boundaries
+# UE5.0 safety boundaries
 
 Read the relevant section before simplifying code or assets in that area.
 

@@ -3,7 +3,7 @@
 **Request:** "Move this Actor's five-line door-open behavior into a reusable
 component."
 
-## Ponytail UE5.8
+## Ponytail UE5.0
 
 Keep it in the Actor when there is one door type and one consumer. A component
 adds a reflected type, registration/lifecycle, another source pair, editor

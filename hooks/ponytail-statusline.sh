@@ -12,7 +12,7 @@ color=108
 [ "$mode" = "ultra" ] && color=173
 
 if [ -z "$mode" ] || [ "$mode" = "full" ]; then
-    printf '\033[38;5;%sm[PONYTAIL UE5.8]\033[0m' "$color"
+    printf '\033[38;5;%sm[PONYTAIL UE5.0]\033[0m' "$color"
 else
-    printf '\033[38;5;%sm[PONYTAIL UE5.8:%s]\033[0m' "$color" "$(printf '%s' "$mode" | tr '[:lower:]' '[:upper:]')"
+    printf '\033[38;5;%sm[PONYTAIL UE5.0:%s]\033[0m' "$color" "$(printf '%s' "$mode" | tr '[:lower:]' '[:upper:]')"
 fi

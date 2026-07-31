@@ -1,5 +1,5 @@
 ---
-description: Quick reference for Ponytail UE5.8 modes, commands, and safety floor
+description: Quick reference for Ponytail UE5.0 modes, commands, and safety floor
 ---
 
-Show the Ponytail UE5.8 help card. Include lite/full/ultra/off; review, audit, debt, gain, and help commands; and the safety floor: UObject lifetime/GC, authority/replication, threading, serialization/save compatibility, cooking/asset reachability, redirects/migrations, crash/data-loss handling, and no asset deletion from grep alone. One-shot display; change no mode or files.
+Show the Ponytail UE5.0 help card. Include lite/full/ultra/off; review, audit, debt, gain, and help commands; and the safety floor: UObject lifetime/GC, authority/replication, threading, serialization/save compatibility, cooking/asset reachability, redirects/migrations, crash/data-loss handling, and no asset deletion from grep alone. One-shot display; change no mode or files.

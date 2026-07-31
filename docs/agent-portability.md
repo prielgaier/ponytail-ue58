@@ -1,6 +1,6 @@
 # Agent portability
 
-Ponytail UE5.8 retains the upstream adapter layout. The canonical long-form
+Ponytail UE5.0 retains the upstream adapter layout. The canonical long-form
 skill is `skills/ponytail/SKILL.md`; `AGENTS.md` is the compact instruction-only
 copy. `hooks/ponytail-instructions.js` supplies mode-aware runtime context.
 
@@ -31,6 +31,6 @@ upstream compatibility. Plugin hosts may namespace them under `ponytail-ue58`.
 ## Scope
 
 The core skill description and compact rule explicitly target Unreal Engine
-5.8. Instruction-only adapters do not intentionally apply Ponytail to other
+5.0. Instruction-only adapters do not intentionally apply Ponytail to other
 engines or general coding tasks. Runtime hooks inject the rules every session,
 so the rules themselves repeat that scope.

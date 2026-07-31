@@ -1,7 +1,7 @@
 {
   "name": "ponytail-ue58-mcp",
   "version": "1.0.0",
-  "description": "MCP server serving Ponytail UE5.8 minimal-engineering instructions.",
+  "description": "MCP server serving Ponytail UE5.0 minimal-engineering instructions.",
   "private": true,
   "type": "module",
   "license": "MIT",
