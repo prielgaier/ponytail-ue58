@@ -1,4 +1,4 @@
-# UE5.8 engine-native decision map
+# UE5.6 engine-native decision map
 
 Use this as a decision aid, not a mandate. The project's established pattern
 wins when it already solves the same problem safely.

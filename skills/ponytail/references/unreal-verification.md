@@ -1,4 +1,4 @@
-# UE5.8 verification ladder
+# UE5.6 verification ladder
 
 Run the cheapest check that can actually fail for the changed behavior, then move outward only as risk requires.
 

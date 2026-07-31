@@ -2,7 +2,7 @@
 
 **Request:** "Add another engine module so this `.cpp` can call one API."
 
-## Ponytail UE5.8
+## Ponytail UE5.6
 
 1. Check whether the owning module already depends on it transitively only by accident; declare direct dependencies that public/private code genuinely uses.
 2. Put a dependency in `PrivateDependencyModuleNames` when public headers do not expose its types.
