@@ -39,7 +39,7 @@ function finish() {
           const dmode = parts[2];
           if (dmode === 'off' || dmode === 'lite' || dmode === 'full' || dmode === 'ultra') {
             writeDefaultMode(dmode);
-            writeHookOutput('UserPromptSubmit', dmode, 'PONYTAIL UE5.8 DEFAULT SET — new sessions start in ' + dmode + '.');
+            writeHookOutput('UserPromptSubmit', dmode, 'PONYTAIL UE5.4 DEFAULT SET — new sessions start in ' + dmode + '.');
           }
           return; // don't fall through to the session-mode switch
         }
@@ -59,7 +59,7 @@ function finish() {
         writeHookOutput(
           'UserPromptSubmit',
           mode,
-          'PONYTAIL UE5.8 MODE ACTIVE — level: ' + mode,
+          'PONYTAIL UE5.4 MODE ACTIVE — level: ' + mode,
         );
       } else if (mode && mode !== 'off') {
         setMode(mode);
@@ -71,13 +71,13 @@ function finish() {
           writeHookOutput(
             'UserPromptSubmit',
             mode,
-            'PONYTAIL UE5.8 MODE CHANGED — level: ' + mode,
+            'PONYTAIL UE5.4 MODE CHANGED — level: ' + mode,
           );
         }
       } else if (mode === 'off') {
         clearMode();
         deactivated = true;
-        writeHookOutput('UserPromptSubmit', 'off', 'PONYTAIL UE5.8 MODE OFF');
+        writeHookOutput('UserPromptSubmit', 'off', 'PONYTAIL UE5.4 MODE OFF');
       }
     }
 
@@ -85,7 +85,7 @@ function finish() {
     if (!modeSwitched && !deactivated && isDeactivationCommand(prompt)) {
       clearMode();
       deactivated = true;
-      writeHookOutput('UserPromptSubmit', 'off', 'PONYTAIL UE5.8 MODE OFF');
+      writeHookOutput('UserPromptSubmit', 'off', 'PONYTAIL UE5.4 MODE OFF');
     }
 
     // Qoder has no SessionStart event, so UserPromptSubmit does double duty:
@@ -106,7 +106,7 @@ function finish() {
         // ponytail: one JSON per invocation — mode-switch confirmation is
         // folded into the ruleset header so Qoder gets both in one write.
         const header = modeSwitched
-          ? 'PONYTAIL UE5.8 MODE CHANGED — level: ' + currentMode + '\n\n'
+          ? 'PONYTAIL UE5.4 MODE CHANGED — level: ' + currentMode + '\n\n'
           : '';
         writeHookOutput('UserPromptSubmit', currentMode, header + getPonytailInstructions(currentMode));
       }

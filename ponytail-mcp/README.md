@@ -1,6 +1,6 @@
-# Ponytail UE5.8 MCP
+# Ponytail UE5.4 MCP
 
-Serves the same mode-aware Unreal Engine 5.8 instructions used by the plugin
+Serves the same mode-aware Unreal Engine 5.4 instructions used by the plugin
 hooks. It is private repository tooling, not a published npm package.
 
 ```bash

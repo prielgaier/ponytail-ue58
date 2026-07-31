@@ -106,7 +106,7 @@ print(json.dumps({'ctx': ctx}))
 `, { XDG_CONFIG_HOME: tmp });
   const { ctx } = JSON.parse(output);
 
-  assert.match(ctx, /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/);
+  assert.match(ctx, /PONYTAIL UE5\.4 MODE ACTIVE — level: ultra/);
   assert.match(ctx, /best UObject is the one the project did not need/);
   assert.match(ctx, /ultra/i);
   assert.doesNotMatch(ctx, /^---/);
@@ -159,8 +159,8 @@ ctx = mod.build_injected_context('review')
 print(json.dumps({'ctx': ctx}))
 `);
   const { ctx } = JSON.parse(output);
-  assert.match(ctx, /PONYTAIL UE5\.8 MODE ACTIVE — level: review/);
-  assert.match(ctx, /Ponytail UE5\.8 review/);
+  assert.match(ctx, /PONYTAIL UE5\.4 MODE ACTIVE — level: review/);
+  assert.match(ctx, /Ponytail UE5\.4 review/);
   assert.match(ctx, /net: -<N> source lines/);
   assert.doesNotMatch(ctx, /^---/);
 });
@@ -187,7 +187,7 @@ print(json.dumps({'message': message, 'context': injected['context']}))
 `);
   const data = JSON.parse(output);
   assert.match(data.message, /ultra/);
-  assert.match(data.context, /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/);
+  assert.match(data.context, /PONYTAIL UE5\.4 MODE ACTIVE — level: ultra/);
 });
 
 test('Hermes gateway rewrite respects slash access denial', () => {

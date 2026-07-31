@@ -1,16 +1,16 @@
 ---
 name: ponytail-review
 description: >
-  Review an Unreal Engine 5.8 diff exclusively for unnecessary architecture,
+  Review an Unreal Engine 5.4 diff exclusively for unnecessary architecture,
   Tick/polling, reflection surface, modules/plugins, wrappers, components,
-  duplicate engine functionality, and unsafe deletion assumptions. Use for UE5.8
+  duplicate engine functionality, and unsafe deletion assumptions. Use for UE5.4
   over-engineering reviews, simplify reviews, delete lists, or
   /ponytail-review. Report only; do not apply fixes.
 ---
 
-# Ponytail UE5.8 review
+# Ponytail UE5.4 review
 
-Review the current UE5.8 diff for removable complexity after reading the
+Review the current UE5.4 diff for removable complexity after reading the
 `.uproject`, affected `Build.cs`/targets, nearby project pattern, and referenced
 assets or Blueprints. The best safe result is a shorter diff with fewer Unreal
 systems to own.
@@ -24,7 +24,7 @@ Use one line per finding:
 Tags:
 
 - `delete:` dead or speculative source with verified reachability evidence.
-- `native:` custom code duplicating a UE5.8 facility already available.
+- `native:` custom code duplicating a UE5.4 facility already available.
 - `tick:` polling that can be an event, delegate, timer, notify, or existing callback.
 - `layer:` one-consumer manager, Subsystem, Component, interface, base class, module, or plugin.
 - `reflect:` reflected API/metadata not consumed by GC, serialization, replication, editor, or Blueprint.
@@ -44,7 +44,7 @@ Rank high-confidence cuts first. End with:
 
 `net: -<N> source lines, -<M> reflected members, -<P> module/plugin dependencies possible; asset deletions: <verified count>.`
 
-If nothing is safely removable: `Lean for UE5.8 already. Ship.`
+If nothing is safely removable: `Lean for UE5.4 already. Ship.`
 
 Scope is over-engineering only. Route correctness, security, and performance
 bugs to a normal review. Do not apply fixes.
