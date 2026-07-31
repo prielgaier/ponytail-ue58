@@ -1,7 +1,7 @@
-# UE5.8 benchmark harness
+# UE5.2 benchmark harness
 
 This fork does not reuse upstream FastAPI/React measurements as Unreal claims.
-The harness checks whether Ponytail UE5.8 produces smaller engine-native choices
+The harness checks whether Ponytail UE5.2 produces smaller engine-native choices
 without dropping critical Unreal boundaries.
 
 ## Deterministic local tests
@@ -31,5 +31,5 @@ npx promptfoo@latest eval -c benchmarks/behavior.yaml --repeat 10
 
 Set the provider API key required by the selected config. Compare correctness
 first, then source LOC and telemetry. Do not publish FPS, memory, package-size,
-cook-time, cost, or latency claims without a pinned UE5.8 fixture, identical
+cook-time, cost, or latency claims without a pinned UE5.2 fixture, identical
 hardware/target/configuration, repeated runs, and before/after artifacts.

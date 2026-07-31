@@ -1,7 +1,7 @@
 {
   "name": "ponytail-ue58",
   "version": "1.0.0",
-  "description": "Minimal, engine-native Unreal Engine 5.8 development with explicit safety boundaries.",
+  "description": "Minimal, engine-native Unreal Engine 5.2 development with explicit safety boundaries.",
   "author": {
     "name": "prielgaier",
     "url": "https://github.com/prielgaier"
@@ -9,5 +9,5 @@
   "homepage": "https://github.com/prielgaier/ponytail-ue58",
   "repository": "https://github.com/prielgaier/ponytail-ue58",
   "license": "MIT",
-  "keywords": ["unreal-engine", "ue5", "ue5.8", "yagni", "code-review"]
+  "keywords": ["unreal-engine", "ue5", "ue5.2", "yagni", "code-review"]
 }

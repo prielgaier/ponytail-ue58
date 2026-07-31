@@ -1,9 +1,9 @@
-# UE5.8 examples
+# UE5.2 examples
 
-These examples show the decisions Ponytail UE5.8 is designed to produce. They
+These examples show the decisions Ponytail UE5.2 is designed to produce. They
 are authored behavioral fixtures, not measured benchmark output.
 
-| Request | Smaller UE5.8 path |
+| Request | Smaller UE5.2 path |
 |---|---|
 | [Run a check every second](tick-vs-timer.md) | `FTimerManager`, not Actor Tick |
 | [Create a global service](singleton-vs-subsystem.md) | narrow UE lifetime, not a hand-rolled singleton |
@@ -14,4 +14,4 @@ are authored behavioral fixtures, not measured benchmark output.
 
 The expected result is not always the fewest C++ lines. Reflection,
 replication, serialization, cooking, and asset metadata count as required when
-UE5.8 consumes them.
+UE5.2 consumes them.

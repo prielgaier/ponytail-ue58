@@ -1,11 +1,11 @@
 ---
 name: ponytail-debt
-description: "Collect UE5.8 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries."
+description: "Collect UE5.2 ponytail shortcut comments into a debt ledger with triggers, ownership, and verification boundaries."
 homepage: https://github.com/prielgaier/ponytail-ue58
 license: MIT
 ---
 
-# Ponytail UE5.8 debt ledger
+# Ponytail UE5.2 debt ledger
 
 Collect deliberate shortcuts marked as:
 
@@ -33,6 +33,6 @@ Tag a marker:
 - `network-check` when authority or replication is involved.
 
 End with `<N> markers; <M> no-trigger; <S> stale; <A> asset/editor checks.`
-Nothing found: `No ponytail: debt. Clean UE5.8 ledger.`
+Nothing found: `No ponytail: debt. Clean UE5.2 ledger.`
 
 Read and report only. Write a ledger file only when explicitly requested.

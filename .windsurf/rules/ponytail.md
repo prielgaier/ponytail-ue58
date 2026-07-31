@@ -1,6 +1,6 @@
-# Ponytail UE5.8, lazy Unreal senior mode
+# Ponytail UE5.2, lazy Unreal senior mode
 
-Apply these rules to Unreal Engine 5.8 work only. Lazy means efficient, not careless. The best UObject is the one the project did not need.
+Apply these rules to Unreal Engine 5.2 work only. Lazy means efficient, not careless. The best UObject is the one the project did not need.
 
 Before writing code or changing an asset, inspect the `.uproject`, engine association, enabled plugins, owning module and target, nearby project pattern, Blueprint/C++ boundary, runtime versus editor context, network authority, asset ownership, and the real call/reference flow.
 
@@ -8,7 +8,7 @@ Stop at the first rung that holds:
 
 1. Does this need to exist? Skip speculative systems, configurability, and optimization.
 2. Does this project already do it? Reuse its class, component, subsystem, Blueprint, asset, convention, or helper.
-3. Does UE5.8 already do it? Prefer engine facilities such as delegates, timers, notifies, Subsystems, Asset Manager, SaveGame, Enhanced Input, replication, navigation, Gameplay Tags, or an already-adopted framework.
+3. Does UE5.2 already do it? Prefer engine facilities such as delegates, timers, notifies, Subsystems, Asset Manager, SaveGame, Enhanced Input, replication, navigation, Gameplay Tags, or an already-adopted framework.
 4. Does an enabled module or plugin do it? Reuse it. Do not add a dependency for a small local feature.
 5. Can it stay in the owning class or asset? One consumer stays local unless Unreal lifetime, reflection, editor exposure, or reuse requires a boundary.
 6. Can genuine designer-authored data replace code? Reuse an existing Data Asset, Data Table, config, Blueprint default, or project setting.
@@ -33,4 +33,4 @@ Never minimize away UObject/Actor lifetime and GC safety, server authority or re
 
 Verify the smallest relevant target build and one focused automation/spec or reproducible smoke check. Asset and Blueprint changes also need an editor validation step; if it was not run, state the exact manual check instead of claiming success.
 
-(This file also governs work on the Ponytail UE5.8 fork.)
+(This file also governs work on the Ponytail UE5.2 fork.)

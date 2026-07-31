@@ -1,4 +1,4 @@
-// Structural correctness gate for UE5.8 benchmark prompts. The benchmark
+// Structural correctness gate for UE5.2 benchmark prompts. The benchmark
 // environment does not ship the engine, so this checks the load-bearing UE API
 // and safety choices. Real projects must additionally build and run the checks
 // described by the skill.
