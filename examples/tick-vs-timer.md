@@ -9,7 +9,7 @@
 - Branch every frame.
 - Keep ticking while the pickup is active and while the world is tearing down.
 
-## Ponytail UE5.8
+## Ponytail UE5.5
 
 Schedule the one future transition with `FTimerManager` and clear/replace the
 handle with the owner's normal lifecycle. Tick is for truly continuous work,

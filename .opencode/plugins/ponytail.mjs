@@ -1,4 +1,4 @@
-// Ponytail UE5.8 OpenCode plugin.
+// Ponytail UE5.5 OpenCode plugin.
 //
 // Injects the ponytail ruleset into every chat's system prompt at the active
 // intensity, persists /ponytail mode switches, and registers slash commands so

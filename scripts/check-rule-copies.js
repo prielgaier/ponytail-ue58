@@ -42,7 +42,7 @@ for (const [relPath, normalize] of copies) {
 // a rule's wording trips this, which is the reminder to propagate it everywhere.
 // Upgrade path: generate the copies from SKILL.md if this ever misses a real drift.
 const INVARIANTS = [
-  'Unreal Engine 5.8',
+  'Unreal Engine 5.5',
   'Blueprint/C++',
   'Text grep alone cannot prove',
   'UObject',

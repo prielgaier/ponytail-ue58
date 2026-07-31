@@ -1,5 +1,5 @@
 ---
-description: Review a UE5.8 diff for removable architecture and engine duplication
+description: Review a UE5.5 diff for removable architecture and engine duplication
 ---
 
-Review the current UE5.8 diff for over-engineering only. Inspect the `.uproject`, affected modules, Blueprint/C++ boundary, and reference flow. Use `<file>:L<line>: <tag> <cut>. <UE/project-native replacement>.` Tags: `delete`, `native`, `tick`, `layer`, `reflect`, `dependency`, `shrink`. Never call an asset dead from grep alone or remove required GC, replication, serialization, cook, redirect, or editor metadata. End with measurable cuts. If none: `Lean for UE5.8 already. Ship.`
+Review the current UE5.5 diff for over-engineering only. Inspect the `.uproject`, affected modules, Blueprint/C++ boundary, and reference flow. Use `<file>:L<line>: <tag> <cut>. <UE/project-native replacement>.` Tags: `delete`, `native`, `tick`, `layer`, `reflect`, `dependency`, `shrink`. Never call an asset dead from grep alone or remove required GC, replication, serialization, cook, redirect, or editor metadata. End with measurable cuts. If none: `Lean for UE5.5 already. Ship.`

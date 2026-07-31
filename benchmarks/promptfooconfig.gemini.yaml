@@ -1,4 +1,4 @@
-description: "Ponytail UE5.8 vs baseline on Gemini: structural correctness and code LOC."
+description: "Ponytail UE5.5 vs baseline on Gemini: structural correctness and code LOC."
 
 providers:
   - id: google:gemini-3.5-flash
@@ -10,7 +10,7 @@ prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
   - id: file://arms/ponytail.js
-    label: ponytail UE5.8
+    label: ponytail UE5.5
 
 defaultTest:
   assert:
@@ -22,8 +22,8 @@ defaultTest:
       metric: correct
 
 tests:
-  - vars: { task: "In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." }
-  - vars: { task: "Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state." }
-  - vars: { task: "In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely." }
-  - vars: { task: "A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change." }
-  - vars: { task: "Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path." }
+  - vars: { task: "In Unreal Engine 5.5 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." }
+  - vars: { task: "Implement server-authoritative replicated health in Unreal Engine 5.5 C++ so remote clients and late joiners receive state." }
+  - vars: { task: "In UE5.5 C++, reference an optional skin that should remain unloaded until selected, then load it safely." }
+  - vars: { task: "A private cpp file needs TargetModule in this UE5.5 module. Show the smallest correct Build.cs dependency change." }
+  - vars: { task: "Batch rename Unreal Engine 5.5 assets while preserving references. Give the supported minimal editor automation path." }
