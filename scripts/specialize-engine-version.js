@@ -35,7 +35,11 @@ function isText(buffer) {
 }
 
 function specializeText(text, target) {
-  let next = text.replaceAll(SOURCE_VERSION, target);
+  const escapedSource = SOURCE_VERSION.replace('.', '\\.');
+  const escapedTarget = target.replace('.', '\\.');
+  let next = text
+    .replaceAll(escapedSource, escapedTarget)
+    .replaceAll(SOURCE_VERSION, target);
   if (target === '4.27') {
     next = next
       .replace(/\bUE5\b/g, 'UE4')
