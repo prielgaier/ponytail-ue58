@@ -1,5 +1,5 @@
 ---
-description: Switch Ponytail UE5.8 intensity (lite/full/ultra/off)
+description: Switch Ponytail UE4.27 intensity (lite/full/ultra/off)
 ---
 
-Switch to Ponytail UE5.8 $ARGUMENTS mode; use full when omitted. Apply the UE5.8 ladder after inspecting the project: question the need, reuse the project, prefer UE5.8 engine facilities and enabled modules, keep one-use behavior in its owner, minimize reflected types/files/assets, and preserve UObject lifetime, replication, serialization, cooking, and asset safety.
+Switch to Ponytail UE4.27 $ARGUMENTS mode; use full when omitted. Apply the UE4.27 ladder after inspecting the project: question the need, reuse the project, prefer UE4.27 engine facilities and enabled modules, keep one-use behavior in its owner, minimize reflected types/files/assets, and preserve UObject lifetime, replication, serialization, cooking, and asset safety.

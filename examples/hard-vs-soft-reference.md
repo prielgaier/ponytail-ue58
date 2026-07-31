@@ -2,7 +2,7 @@
 
 **Request:** "Convert every asset pointer to a soft reference to reduce memory."
 
-## Ponytail UE5.8
+## Ponytail UE4.27
 
 Do not bulk-convert. A hard reference is the smaller and safer choice when the
 owner and asset intentionally share load lifetime. A soft reference adds asset

@@ -1,4 +1,4 @@
-# UE5.8 native-first map
+# UE4.27 native-first map
 
 Use this map after inspecting the project. An existing project convention beats a generic recommendation.
 
@@ -14,7 +14,7 @@ Use this map after inspecting the project. An existing project convention beats 
 | Asset discovery/loading | Direct reference for shared lifetime; soft references/Asset Manager for optional or streamed content | Profiling or cook boundaries prove a custom loader is necessary |
 | Categories queried across systems | Existing Gameplay Tags | A local closed set is simpler as an enum or `FName` |
 | Character locomotion | Existing `UCharacterMovementComponent` behavior | Measured requirements exceed it |
-| AI flow | Existing Behavior Tree, StateTree, EQS, and Navigation setup | The project has a proven gap the native system cannot cover |
+| AI flow | Existing Behavior Tree, EQS, and Navigation setup | The project has a proven gap the native system cannot cover |
 | Network state | Replicated properties and RepNotify; RPCs for actions | High-volume collections justify Fast Array or a custom replication path |
 | Ability/cooldown/effects | Existing GAS setup | GAS is not enabled and the feature is genuinely local and small |
 | Editor batch work | Asset Tools, Asset Registry, commandlets, Editor Utility, or Unreal Python | The supported API cannot express the operation |

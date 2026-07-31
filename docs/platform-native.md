@@ -1,4 +1,4 @@
-# UE5.8 engine-native decision map
+# UE4.27 engine-native decision map
 
 Use this as a decision aid, not a mandate. The project's established pattern
 wins when it already solves the same problem safely.
@@ -21,7 +21,7 @@ wins when it already solves the same problem safely.
 | Input mapping | Enhanced Input when enabled | the project has a platform/device requirement it cannot express |
 | Cooldown/delay | owner timer; existing GAS cooldown when GAS is already adopted | multiple real owners need shared coordination |
 | Cross-system category | existing Gameplay Tags | a local closed set is not simpler as an enum or `FName` |
-| AI decision flow | existing Behavior Tree, StateTree, EQS, and navigation setup | a demonstrated gap requires custom control flow |
+| AI decision flow | existing Behavior Tree, EQS, and navigation setup | a demonstrated gap requires custom control flow |
 | Reusable Actor behavior | existing class first, Actor Component for real composition/reuse | one consumer or one call site does not justify extraction |
 
 ## Data, config, and persistence

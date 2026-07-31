@@ -1,12 +1,12 @@
 ---
 name: ponytail-help
 description: >
-  Show the Ponytail UE5.8 modes, commands, safety boundaries, and usage card.
+  Show the Ponytail UE4.27 modes, commands, safety boundaries, and usage card.
   Use for /ponytail-help, Ponytail UE help, available commands, or mode help.
   One-shot display; do not change mode.
 ---
 
-# Ponytail UE5.8 help
+# Ponytail UE4.27 help
 
 Display this compact card when invoked. Do not change mode or write state.
 
@@ -14,7 +14,7 @@ Display this compact card when invoked. Do not change mode or write state.
 
 | Level | Trigger | Behavior |
 |---|---|---|
-| Lite | `/ponytail lite` | Build the requested UE5.8 design and name the smaller native option. |
+| Lite | `/ponytail lite` | Build the requested UE4.27 design and name the smaller native option. |
 | Full | `/ponytail` | Reuse project and engine systems; minimize files, reflection, Tick, modules, plugins, and assets. Default. |
 | Ultra | `/ponytail ultra` | Challenge speculative systems and optimization while preserving every UE safety boundary. |
 
@@ -23,8 +23,8 @@ Display this compact card when invoked. Do not change mode or write state.
 | Command | Result |
 |---|---|
 | `/ponytail [lite|full|ultra|off]` | Show or change mode. |
-| `/ponytail-review` | Review the current UE5.8 diff for removable complexity. |
-| `/ponytail-audit` | Audit the whole UE5.8 project. |
+| `/ponytail-review` | Review the current UE4.27 diff for removable complexity. |
+| `/ponytail-audit` | Audit the whole UE4.27 project. |
 | `/ponytail-debt` | Collect `ponytail:` shortcut markers. |
 | `/ponytail-gain` | Show an evidence-only simplification scoreboard for the current diff. |
 | `/ponytail-help` | Show this card. |

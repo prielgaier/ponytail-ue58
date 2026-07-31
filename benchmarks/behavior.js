@@ -1,4 +1,4 @@
-// UE5.8 behavior gates. These check whether the instructions produce the
+// UE4.27 behavior gates. These check whether the instructions produce the
 // project-aware safety behaviors that a generic "write less" prompt misses.
 
 function result(pass, reason) {

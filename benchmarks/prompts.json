@@ -1,15 +1,15 @@
 {
-  "method": "Single-shot structural UE5.8 prompt evaluation. Code lines come from fenced blocks; correctness uses deterministic engine-API/safety gates. No Unreal runtime performance is claimed.",
+  "method": "Single-shot structural UE4.27 prompt evaluation. Code lines come from fenced blocks; correctness uses deterministic engine-API/safety gates. No Unreal runtime performance is claimed.",
   "configs": [
     "baseline — no skill",
     "caveman — terse-prose control",
-    "ponytail — Ponytail UE5.8 full instructions"
+    "ponytail — Ponytail UE4.27 full instructions"
   ],
   "tasks": [
-    { "id": "timer", "prompt": "In Unreal Engine 5.8 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." },
-    { "id": "replication", "prompt": "Implement server-authoritative replicated health in Unreal Engine 5.8 C++ so remote clients and late joiners receive state." },
-    { "id": "soft-asset", "prompt": "In UE5.8 C++, reference an optional skin that should remain unloaded until selected, then load it safely." },
-    { "id": "private-dependency", "prompt": "A private cpp file needs TargetModule in this UE5.8 module. Show the smallest correct Build.cs dependency change." },
-    { "id": "editor-assets", "prompt": "Batch rename Unreal Engine 5.8 assets while preserving references. Give the supported minimal editor automation path." }
+    { "id": "timer", "prompt": "In Unreal Engine 4.27 C++, make an Actor respawn once after 5 seconds. It currently has Tick disabled." },
+    { "id": "replication", "prompt": "Implement server-authoritative replicated health in Unreal Engine 4.27 C++ so remote clients and late joiners receive state." },
+    { "id": "soft-asset", "prompt": "In UE4.27 C++, reference an optional skin that should remain unloaded until selected, then load it safely." },
+    { "id": "private-dependency", "prompt": "A private cpp file needs TargetModule in this UE4.27 module. Show the smallest correct Build.cs dependency change." },
+    { "id": "editor-assets", "prompt": "Batch rename Unreal Engine 4.27 assets while preserving references. Give the supported minimal editor automation path." }
   ]
 }

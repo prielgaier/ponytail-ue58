@@ -1,6 +1,6 @@
 {
   "name": "ponytail-ue58",
-  "description": "Ponytail minimal-engineering mode for Unreal Engine 5.8.",
+  "description": "Ponytail minimal-engineering mode for Unreal Engine 4.27.",
   "owner": {
     "name": "prielgaier",
     "url": "https://github.com/prielgaier"
@@ -8,10 +8,10 @@
   "plugins": [
     {
       "name": "ponytail-ue58",
-      "description": "Prefer existing project and UE5.8 systems while preserving engine safety boundaries.",
+      "description": "Prefer existing project and UE4.27 systems while preserving engine safety boundaries.",
       "source": "./",
       "category": "productivity",
-      "tags": ["unreal-engine", "ue5", "ue5.8", "yagni", "code-review"],
+      "tags": ["unreal-engine", "ue4", "ue4.27", "yagni", "code-review"],
       "commands": "commands/",
       "skills": "skills/",
       "hooks": "hooks/copilot-hooks.json"

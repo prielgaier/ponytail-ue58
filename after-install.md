@@ -1,7 +1,7 @@
-# Ponytail UE5.8 installed
+# Ponytail UE4.27 installed
 
 Restart or reload the host after enabling the plugin. Start with `full`; it is
-the UE5.8-safe default.
+the UE4.27-safe default.
 
 Commands:
 
