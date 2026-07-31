@@ -12,6 +12,9 @@ This is an Unreal Engine 5.8-specific fork of
 Ponytail's YAGNI discipline and replaces its generic web/stdlib guidance with
 Unreal-aware decisions, safety boundaries, reviews, examples, and tests.
 
+This checkout's target is recorded in `ENGINE_VERSION`. See
+[VERSIONS.md](VERSIONS.md) for the UE4.27 and UE5.0-UE5.8 branch matrix.
+
 ## What it changes
 
 Before adding code or assets, the agent checks:
@@ -125,8 +128,8 @@ non-Unreal tasks.
 
 - [Engine-native decision map](docs/platform-native.md)
 - [Core skill](skills/ponytail/SKILL.md)
-- [Safety boundaries](skills/ponytail/references/ue58-safety.md)
-- [Verification ladder](skills/ponytail/references/ue58-verification.md)
+- [Safety boundaries](skills/ponytail/references/unreal-safety.md)
+- [Verification ladder](skills/ponytail/references/unreal-verification.md)
 - [Examples](examples/README.md)
 
 ## Benchmarks and validation

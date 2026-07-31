@@ -66,11 +66,11 @@ Fix the shared source once when every failing path routes through it.
 - A zero text-reference count is not deletion evidence. Confirm with Asset Registry/Reference Viewer and account for maps, config, tags, reflection, soft paths, Primary Asset rules, and dynamic loads.
 - Mark a deliberate shortcut with `// ponytail: <ceiling>; upgrade when <measurable trigger>`.
 
-Read [references/ue58-native.md](references/ue58-native.md) when choosing between
-engine facilities. Read [references/ue58-safety.md](references/ue58-safety.md)
+Read [references/unreal-native.md](references/unreal-native.md) when choosing between
+engine facilities. Read [references/unreal-safety.md](references/unreal-safety.md)
 before changing UObject lifetime, assets, serialization, replication, cooking,
 async work, or editor data. Read
-[references/ue58-verification.md](references/ue58-verification.md) before declaring
+[references/unreal-verification.md](references/unreal-verification.md) before declaring
 a UE change complete.
 
 ## Output
