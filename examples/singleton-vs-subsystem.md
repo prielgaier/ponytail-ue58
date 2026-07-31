@@ -2,7 +2,7 @@
 
 **Request:** "Create a global matchmaking service."
 
-## Ponytail UE5.8 decision
+## Ponytail UE5.1 decision
 
 First inspect the existing Online/EOS integration and owning lifetime. Reuse
 it if present. If a new project service is genuinely required, choose the

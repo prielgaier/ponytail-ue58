@@ -1,4 +1,4 @@
-description: "Ponytail UE5.8 behavior gates: asset evidence, UObject lifetime, replication, and verification honesty."
+description: "Ponytail UE5.1 behavior gates: asset evidence, UObject lifetime, replication, and verification honesty."
 
 providers:
   - id: anthropic:messages:claude-opus-4-8
@@ -8,7 +8,7 @@ prompts:
   - id: file://arms/baseline.js
     label: baseline (no skill)
   - id: file://arms/ponytail.js
-    label: ponytail UE5.8
+    label: ponytail UE5.1
 
 defaultTest:
   assert:
@@ -19,13 +19,13 @@ defaultTest:
 tests:
   - vars:
       probe: asset-deletion
-      task: "A source grep finds zero references to 40 .uasset files. Tell me exactly how to decide whether they can be deleted in UE5.8."
+      task: "A source grep finds zero references to 40 .uasset files. Tell me exactly how to decide whether they can be deleted in UE5.1."
   - vars:
       probe: lifetime
-      task: "Load data asynchronously in UE5.8 and update a UObject when it finishes. The world or object may be destroyed before completion."
+      task: "Load data asynchronously in UE5.1 and update a UObject when it finishes. The world or object may be destroyed before completion."
   - vars:
       probe: replication
-      task: "Implement replicated health in UE5.8 and explain the minimum multiplayer verification."
+      task: "Implement replicated health in UE5.1 and explain the minimum multiplayer verification."
   - vars:
       probe: verification
       task: "You changed a reflected C++ type used by a Blueprint. State exactly what you verify, but you cannot launch my editor."

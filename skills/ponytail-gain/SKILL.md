@@ -1,14 +1,14 @@
 ---
 name: ponytail-gain
 description: >
-  Produce an evidence-only Unreal Engine 5.8 simplification scoreboard from the
+  Produce an evidence-only Unreal Engine 5.1 simplification scoreboard from the
   current diff: source lines/files, reflected API, Tick sites, module/plugin
   dependencies, and assets added or removed, with verification status. Use for
-  /ponytail-gain, UE5.8 simplification impact, or what Ponytail changed. Never
+  /ponytail-gain, UE5.1 simplification impact, or what Ponytail changed. Never
   invent performance, package-size, cook-time, token, or cost savings.
 ---
 
-# Ponytail UE5.8 gain
+# Ponytail UE5.1 gain
 
 Measure the current repository diff. Do not reuse the upstream Ponytail web
 benchmark numbers: they were not measured on Unreal Engine and are not evidence
@@ -26,7 +26,7 @@ for this fork.
 ## Scoreboard
 
 ```text
-Ponytail UE5.8 gain — current diff only
+Ponytail UE5.1 gain — current diff only
 source       +A / -D lines, net N across F files
 reflection   +R / -R members
 tick         +T / -T sites

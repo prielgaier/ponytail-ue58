@@ -1,4 +1,4 @@
-"""Hermes plugin for Ponytail UE5.8."""
+"""Hermes plugin for Ponytail UE5.1."""
 
 from __future__ import annotations
 
@@ -12,11 +12,11 @@ DEFAULT_MODE = "full"
 RUNTIME_MODES = {"off", "lite", "full", "ultra"}
 CONFIG_MODES = RUNTIME_MODES | {"review"}
 SKILL_COMMANDS = {
-    "ponytail-review": "Review the current UE5.8 diff for avoidable engine and project complexity.",
-    "ponytail-audit": "Audit the UE5.8 repo for unnecessary systems, Tick, reflection, and dependencies.",
+    "ponytail-review": "Review the current UE5.1 diff for avoidable engine and project complexity.",
+    "ponytail-audit": "Audit the UE5.1 repo for unnecessary systems, Tick, reflection, and dependencies.",
     "ponytail-debt": "List each deliberate `ponytail:` shortcut with its trigger and verification boundary.",
-    "ponytail-gain": "Summarize measurable simplification in the current UE5.8 diff.",
-    "ponytail-help": "Show the Ponytail UE5.8 command and safety reference.",
+    "ponytail-gain": "Summarize measurable simplification in the current UE5.1 diff.",
+    "ponytail-help": "Show the Ponytail UE5.1 command and safety reference.",
 }
 
 ROOT = Path(__file__).resolve().parent
@@ -89,8 +89,8 @@ def _filter_skill_body_for_mode(body: str, mode: str) -> str:
 
 def _fallback_instructions(mode: str) -> str:
     return (
-        f"PONYTAIL UE5.8 MODE ACTIVE — level: {mode}\n\n"
-        "Make the smallest correct Unreal Engine 5.8 change. Inspect the .uproject, "
+        f"PONYTAIL UE5.1 MODE ACTIVE — level: {mode}\n\n"
+        "Make the smallest correct Unreal Engine 5.1 change. Inspect the .uproject, "
         "owning module or plugin, target type, enabled plugins, and nearby project "
         "patterns before editing. Prefer existing project code and native UE facilities. "
         "Use events or timers instead of Tick when continuous work is unnecessary. "
@@ -111,14 +111,14 @@ def build_injected_context(mode: str | None = None) -> str:
     if configured == "review":
         try:
             body = REVIEW_SKILL.read_text(encoding="utf-8")
-            return f"PONYTAIL UE5.8 MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
+            return f"PONYTAIL UE5.1 MODE ACTIVE — level: review\n\n{_strip_frontmatter(body)}"
         except OSError:
-            return "PONYTAIL UE5.8 MODE ACTIVE — level: review. Review UE5.8 diffs for unnecessary complexity."
+            return "PONYTAIL UE5.1 MODE ACTIVE — level: review. Review UE5.1 diffs for unnecessary complexity."
 
     effective = _normalize_runtime_mode(configured) or DEFAULT_MODE
     try:
         body = PONYTAIL_SKILL.read_text(encoding="utf-8")
-        return f"PONYTAIL UE5.8 MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
+        return f"PONYTAIL UE5.1 MODE ACTIVE — level: {effective}\n\n{_filter_skill_body_for_mode(body, effective)}"
     except OSError:
         return _fallback_instructions(effective)
 
@@ -206,7 +206,7 @@ def register(ctx: Any) -> None:
     ctx.register_command(
         "ponytail",
         _handle_mode_command,
-        description="Set Ponytail UE5.8 mode: lite, full, ultra, or off.",
+        description="Set Ponytail UE5.1 mode: lite, full, ultra, or off.",
         args_hint="[lite|full|ultra|off]",
     )
     for command, description in SKILL_COMMANDS.items():

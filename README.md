@@ -1,19 +1,19 @@
 <p align="center">
-  <img src="assets/logo.png" alt="Ponytail UE5.8" width="180">
+  <img src="assets/logo.png" alt="Ponytail UE5.1" width="180">
 </p>
 
-# Ponytail UE5.8
+# Ponytail UE5.1
 
 The lazy Unreal senior: reuse the project, use the engine, add the smallest
-safe UE5.8 change.
+safe UE5.1 change.
 
-This is an Unreal Engine 5.8-specific fork of
+This is an Unreal Engine 5.1-specific fork of
 [DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail). It keeps
 Ponytail's YAGNI discipline and replaces its generic web/stdlib guidance with
 Unreal-aware decisions, safety boundaries, reviews, examples, and tests.
 
 This checkout's target is recorded in `ENGINE_VERSION`. See
-[VERSIONS.md](VERSIONS.md) for the UE4.27 and UE5.0-UE5.8 branch matrix.
+[VERSIONS.md](VERSIONS.md) for the UE4.27 and UE5.0-UE5.1 branch matrix.
 
 ## What it changes
 
@@ -21,7 +21,7 @@ Before adding code or assets, the agent checks:
 
 1. Does the feature need to exist?
 2. Does the project already have the class, Blueprint, asset, helper, component, or convention?
-3. Does UE5.8 already provide the lifecycle or system?
+3. Does UE5.1 already provide the lifecycle or system?
 4. Does an enabled module/plugin already cover it?
 5. Can one-use behavior stay in its owner?
 6. Can genuinely authored data use an existing asset/config path?
@@ -38,7 +38,7 @@ Task: "Add a global cooldown manager for this Actor."
 Without UE-aware Ponytail: a singleton UObject, new module, interface, settings
 object, Tick loop, and Blueprint wrapper.
 
-With Ponytail UE5.8:
+With Ponytail UE5.1:
 
 ```cpp
 GetWorldTimerManager().SetTimer(CooldownHandle, this,
@@ -50,7 +50,7 @@ owner and a cross-lifetime requirement exist.
 
 ## Safety floor
 
-Ponytail UE5.8 never minimizes away:
+Ponytail UE5.1 never minimizes away:
 
 - UObject/Actor lifetime and garbage collection
 - server authority, RPC ownership, replication, relevancy, and prediction
@@ -92,8 +92,8 @@ non-interactive shell PATH.
 | Command | Purpose |
 |---|---|
 | `/ponytail [lite|full|ultra|off]` | Show or change intensity. `full` is the safe default. |
-| `/ponytail-review` | Review the current UE5.8 diff for removable complexity. |
-| `/ponytail-audit` | Audit the entire UE5.8 project. |
+| `/ponytail-review` | Review the current UE5.1 diff for removable complexity. |
+| `/ponytail-audit` | Audit the entire UE5.1 project. |
 | `/ponytail-debt` | Collect `ponytail:` shortcuts and their upgrade triggers. |
 | `/ponytail-gain` | Report measurable current-diff simplification only. |
 | `/ponytail-help` | Show the quick-reference card. |
@@ -121,10 +121,10 @@ OpenCode, Qoder, Devin, Pi, Hermes, OpenClaw, Cursor, Windsurf, Cline, Kiro,
 and AGENTS.md readers. See [docs/agent-portability.md](docs/agent-portability.md).
 
 Instruction-only hosts can copy the matching rules file or use `AGENTS.md`.
-Those rules are UE5.8-scoped and do not ask agents to apply Ponytail to
+Those rules are UE5.1-scoped and do not ask agents to apply Ponytail to
 non-Unreal tasks.
 
-## UE5.8 references
+## UE5.1 references
 
 - [Engine-native decision map](docs/platform-native.md)
 - [Core skill](skills/ponytail/SKILL.md)
@@ -135,9 +135,9 @@ non-Unreal tasks.
 ## Benchmarks and validation
 
 The original Ponytail results measured FastAPI/React work. They are not claimed
-for Unreal Engine. This fork ships UE5.8-specific behavioral and structural
+for Unreal Engine. This fork ships UE5.1-specific behavioral and structural
 gates, but publishes no FPS, memory, package-size, cook-time, code-size, token,
-cost, or latency claims until they are measured on reproducible UE5.8 fixtures.
+cost, or latency claims until they are measured on reproducible UE5.1 fixtures.
 
 Run the local validation suite:
 
@@ -154,5 +154,5 @@ key documented there.
 
 Forked from [Ponytail](https://github.com/DietrichGebert/ponytail), created by
 Dietrich Gebert. The original MIT copyright notice is preserved in `LICENSE`.
-UE5.8 conversion maintained at
+UE5.1 conversion maintained at
 [prielgaier/ponytail-ue58](https://github.com/prielgaier/ponytail-ue58).

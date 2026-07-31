@@ -59,12 +59,12 @@ let result = run('ponytail-activate.js', codexEnv);
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.readFileSync(codexState, 'utf8'), 'ultra');
 let output = JSON.parse(result.stdout);
-assert.equal(output.systemMessage, 'PONYTAIL UE5.8:ULTRA');
+assert.equal(output.systemMessage, 'PONYTAIL UE5.1:ULTRA');
 assert.equal(output.additionalContext, undefined, 'Codex must not emit additionalContext at top level (#573)');
 assert.equal(output.hookSpecificOutput.hookEventName, 'SessionStart');
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE ACTIVE — level: ultra/,
+  /PONYTAIL UE5\.1 MODE ACTIVE — level: ultra/,
 );
 
 result = run(
@@ -75,7 +75,7 @@ result = run(
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.readFileSync(codexState, 'utf8'), 'lite');
 output = JSON.parse(result.stdout);
-assert.equal(output.systemMessage, 'PONYTAIL UE5.8:LITE');
+assert.equal(output.systemMessage, 'PONYTAIL UE5.1:LITE');
 
 // Querying bare @ponytail should report the active level ('lite') without resetting it to default ('ultra')
 result = run(
@@ -90,7 +90,7 @@ assert.equal(output.additionalContext, undefined, 'Codex must not emit additiona
 assert.equal(output.hookSpecificOutput.hookEventName, 'UserPromptSubmit');
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE ACTIVE — level: lite/,
+  /PONYTAIL UE5\.1 MODE ACTIVE — level: lite/,
 );
 
 result = run(
@@ -101,7 +101,7 @@ result = run(
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.existsSync(codexState), false);
 output = JSON.parse(result.stdout);
-assert.equal(output.systemMessage, 'PONYTAIL UE5.8:OFF');
+assert.equal(output.systemMessage, 'PONYTAIL UE5.1:OFF');
 
 // A request that merely mentions "normal mode" must not deactivate ponytail.
 result = run('ponytail-mode-tracker.js', codexEnv, JSON.stringify({ prompt: '@ponytail lite' }));
@@ -196,7 +196,7 @@ assert.equal(
   'copilot hooks must not write mode state to codex PLUGIN_DATA',
 );
 output = JSON.parse(result.stdout);
-assert.match(output.additionalContext, /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+assert.match(output.additionalContext, /PONYTAIL UE5\.1 MODE ACTIVE — level: full/);
 
 result = run(
   'ponytail-mode-tracker.js',
@@ -233,7 +233,7 @@ output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE ACTIVE — level: full/,
+  /PONYTAIL UE5\.1 MODE ACTIVE — level: full/,
 );
 
 // No flag → ponytail off → inject nothing (empty stdout, no failure).
@@ -250,10 +250,10 @@ fs.writeFileSync(path.join(subCodex, '.ponytail-active'), 'full');
 result = run('ponytail-subagent.js', { HOME: subHome, USERPROFILE: subHome, PLUGIN_DATA: subCodex });
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
-assert.equal(output.systemMessage, 'PONYTAIL UE5.8:FULL');
+assert.equal(output.systemMessage, 'PONYTAIL UE5.1:FULL');
 assert.equal(output.additionalContext, undefined, 'Codex must not emit additionalContext at top level (#573)');
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
-assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.1 MODE ACTIVE — level: full/);
 
 // SubagentStart scoping (issue #506): PONYTAIL_SUBAGENT_MATCHER limits the
 // injection to agent types whose name matches the regex. Unset keeps the
@@ -274,7 +274,7 @@ result = run(
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
-assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.1 MODE ACTIVE — level: full/);
 
 // agent_type the matcher rejects → stay silent.
 result = run(
@@ -303,7 +303,7 @@ result = run(
 );
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
-assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.1 MODE ACTIVE — level: full/);
 
 // Invalid regex → must not crash; fall back to injecting everywhere.
 result = run(
@@ -321,7 +321,7 @@ assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
 result = run('ponytail-subagent.js', scopeEnv, '');
 assert.equal(result.status, 0, result.stderr);
 output = JSON.parse(result.stdout);
-assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.8 MODE ACTIVE — level: full/);
+assert.match(output.hookSpecificOutput.additionalContext, /PONYTAIL UE5\.1 MODE ACTIVE — level: full/);
 
 // Qoder: no SessionStart event, so UserPromptSubmit does double duty —
 // it activates the default mode on first prompt (writes flag), then injects
@@ -351,7 +351,7 @@ output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'UserPromptSubmit');
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE ACTIVE — level: full/,
+  /PONYTAIL UE5\.1 MODE ACTIVE — level: full/,
 );
 
 // /ponytail ultra: mode tracker updates flag and injects ultra ruleset.
@@ -365,7 +365,7 @@ assert.equal(fs.readFileSync(qoderState, 'utf8'), 'ultra');
 output = JSON.parse(result.stdout);
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE CHANGED — level: ultra/,
+  /PONYTAIL UE5\.1 MODE CHANGED — level: ultra/,
 );
 
 // "stop ponytail": deactivates, clears flag, no ruleset output.
@@ -377,7 +377,7 @@ result = run(
 assert.equal(result.status, 0, result.stderr);
 assert.equal(fs.existsSync(qoderState), false, 'flag must be cleared after stop ponytail');
 output = JSON.parse(result.stdout);
-assert.equal(output.hookSpecificOutput.additionalContext, 'PONYTAIL UE5.8 MODE OFF');
+assert.equal(output.hookSpecificOutput.additionalContext, 'PONYTAIL UE5.1 MODE OFF');
 
 // Subagent injection via PreToolUse (task|Task matcher): when ponytail is
 // active, the subagent hook injects the ruleset. Qoder shares the same
@@ -390,7 +390,7 @@ output = JSON.parse(result.stdout);
 assert.equal(output.hookSpecificOutput.hookEventName, 'SubagentStart');
 assert.match(
   output.hookSpecificOutput.additionalContext,
-  /PONYTAIL UE5\.8 MODE ACTIVE — level: full/,
+  /PONYTAIL UE5\.1 MODE ACTIVE — level: full/,
 );
 // writeDefaultMode must merge into existing config, not overwrite it (#490).
 const mergeHome = path.join(temp, 'merge-home');

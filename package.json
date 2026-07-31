@@ -1,8 +1,8 @@
 {
   "name": "@prielgaier/ponytail-ue58",
   "version": "1.0.0",
-  "description": "Ponytail minimal-engineering mode converted specifically for Unreal Engine 5.8.",
-  "keywords": ["opencode-plugin", "ponytail", "unreal-engine", "ue5", "ue5.8", "skills"],
+  "description": "Ponytail minimal-engineering mode converted specifically for Unreal Engine 5.1.",
+  "keywords": ["opencode-plugin", "ponytail", "unreal-engine", "ue5", "ue5.1", "skills"],
   "license": "MIT",
   "author": {
     "name": "prielgaier",

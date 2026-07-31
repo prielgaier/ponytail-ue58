@@ -1,14 +1,14 @@
 ---
 name: ponytail-debt
 description: >
-  Collect every Ponytail shortcut marker in an Unreal Engine 5.8 project into a
+  Collect every Ponytail shortcut marker in an Unreal Engine 5.1 project into a
   debt ledger with its ceiling, measurable upgrade trigger, owning module or
   asset, and required editor/runtime verification. Use for /ponytail-debt,
   shortcut ledgers, deferred UE work, or questions about Ponytail compromises.
   Read and report only.
 ---
 
-# Ponytail UE5.8 debt ledger
+# Ponytail UE5.1 debt ledger
 
 Collect deliberate shortcuts marked as:
 
@@ -36,6 +36,6 @@ Tag a marker:
 - `network-check` when authority or replication is involved.
 
 End with `<N> markers; <M> no-trigger; <S> stale; <A> asset/editor checks.`
-Nothing found: `No ponytail: debt. Clean UE5.8 ledger.`
+Nothing found: `No ponytail: debt. Clean UE5.1 ledger.`
 
 Read and report only. Write a ledger file only when explicitly requested.
